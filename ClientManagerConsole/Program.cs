@@ -1,15 +1,17 @@
-﻿using System.Text;
+﻿using ClientManagerLibrary.DataAccess;
+using System.Text;
 
 namespace ClientManager
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Welcome to Console!");
             Console.WriteLine("Enter 1 - for registration");
             Console.WriteLine("Enter 2 - for log in");
             Console.WriteLine("Enter 0 - for exit");
+
             while (true)
             {
                 Console.Write("Your choice: ");
@@ -18,20 +20,20 @@ namespace ClientManager
                 if (pick == "1")
                 {
                     Console.Write("Enter your login: ");
-                    string login = Console.ReadLine();
-                    Console.WriteLine($"Enter your password for login [ {login} ].");
+                    string username = Console.ReadLine();
+                    Console.WriteLine($"Enter your password for login [ {username} ].");
                     Console.Write($"Only chars and integers allowed: ");
 
                     string password = Users.BuildPassword();
 
-                    if (Users.ValidateUserRegistration(login, password))
+                    if (await Users.ValidateUserRegistration(username, password))
                     {
-                        Users.RegisterNewUser(login, password);
-                        WriteMessageInColor($"Login [ {login} ] successfully registered!", ConsoleColor.Green);
+                        DataAccess.SaveUserToDB(username, password);
+                        WriteMessageInColor($"Login [ {username} ] successfully registered!", ConsoleColor.Green);
                     }
                     else
                     {
-                        WriteMessageInColor($"Registration for login [ {login} ] fails!", ConsoleColor.Red);
+                        WriteMessageInColor($"Registration for login [ {username} ] fails!", ConsoleColor.Red);
                     }
 
                     continue;
@@ -40,13 +42,13 @@ namespace ClientManager
                 if (pick == "2")
                 {
                     Console.Write("Enter your login: ");
-                    string login = Console.ReadLine();
-                    Console.Write($"Enter your password for login [ {login} ]: ");
+                    string username = Console.ReadLine();
+                    Console.Write($"Enter your password for login [ {username} ]: ");
                     string password = Users.BuildPassword();
 
-                    if (Users.ValidateUserLogin(login, password))
+                    if (await DataAccess.TryUserLogin(username, password))
                     {
-                        WriteMessageInColor($"Welcome, [ {login} ] !", ConsoleColor.Green);
+                        WriteMessageInColor($"Welcome, [ {username} ] !", ConsoleColor.Green);
                         break;
                     }
                     else
@@ -79,50 +81,25 @@ namespace ClientManager
 
     static class Users
     {
-        static public List<User> UsersList { get; } = [
-            new() { Username = "test", Password = "123" },
-        ];
-
-        /// <summary>
-        /// Registers new user
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        static public void RegisterNewUser(string username, string password)
-        {
-            UsersList.Add(new User(username, password));
-        }
-
         /// <summary>
         /// Checks if it is possible to register a user
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        static public bool ValidateUserRegistration(string username, string password)
+        static public async Task<bool> ValidateUserRegistration(string username, string password)
         {
             if (username.Length < 3 || password.Length < 3)
             {
                 return false;
             }
 
-            if (UsersList.Any(u => u.Username == username))
+            if (await DataAccess.IsUserExists(username))
             {
                 return false;
             }
 
             return true;
-        }
-
-        /// <summary>
-        /// Checks if it is possible to log in
-        /// </summary>
-        /// <param name="login"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        static public bool ValidateUserLogin(string login, string password)
-        {
-            return UsersList.Contains(new User { Username = login, Password = password });
         }
 
         /// <summary>
