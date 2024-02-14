@@ -58,6 +58,17 @@ namespace ClientManager
                     }
                 }
 
+                if (pick == "3")
+                {
+                    // test select from db
+                    var list = await DataAccess.GetAllUsers();
+                    foreach (var item in list)
+                    {
+                        Console.WriteLine((item.Id, item.Name));
+                    }
+                    
+                }
+
                 if (pick == "0")
                 {
                     ConsoleTools.WriteMessageInColor("Bye!", ConsoleColor.Yellow);

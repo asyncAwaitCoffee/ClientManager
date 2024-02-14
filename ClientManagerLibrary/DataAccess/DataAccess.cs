@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using ClientManagerLibrary.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -133,6 +134,42 @@ namespace ClientManagerLibrary.DataAccess
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// For tests only
+        /// </summary>
+        /// <returns>All users</returns>
+        static public async Task<List<User>> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string command = "SELECT * FROM CLIENT_MANAGER.USERS";
+
+                await connection.OpenAsync();
+                SqlCommand sqlCommand = connection.CreateCommand();
+
+                sqlCommand.CommandText = command;
+                sqlCommand.CommandType = CommandType.Text;
+
+                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
+
+                while (await result.ReadAsync())
+                {
+                    users.Add(
+                            new User() { 
+                                Id = result.GetInt32("ID"),
+                                Name = result.GetString("USER_LOGIN")
+                            }
+                        );
+                }
+            }
+
+            return users;
+
         }
     }
 }
