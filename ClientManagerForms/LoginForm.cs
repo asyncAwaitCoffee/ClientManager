@@ -37,5 +37,14 @@ namespace ClientManagerForms
                 loginInfoLabel.Text = "Err, oh no!";
             }
         }
+
+        private void LoginForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            // also the KeyPreview option is set to true
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }
