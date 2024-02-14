@@ -1,4 +1,5 @@
-﻿using ClientManagerLibrary.DataAccess;
+﻿using ClientManagerConsole;
+using ClientManagerLibrary.DataAccess;
 using System.Text;
 
 namespace ClientManager
@@ -24,16 +25,16 @@ namespace ClientManager
                     Console.WriteLine($"Enter your password for login [ {username} ].");
                     Console.Write($"Only chars and integers allowed: ");
 
-                    string password = Users.BuildPassword();
+                    string password = ConsoleTools.BuildPassword();
 
-                    if (await Users.ValidateUserRegistration(username, password))
+                    if (await DataAccess.ValidateUserRegistration(username, password))
                     {
                         DataAccess.SaveUserToDB(username, password);
-                        WriteMessageInColor($"Login [ {username} ] successfully registered!", ConsoleColor.Green);
+                        ConsoleTools.WriteMessageInColor($"Login [ {username} ] successfully registered!", ConsoleColor.Green);
                     }
                     else
                     {
-                        WriteMessageInColor($"Registration for login [ {username} ] fails!", ConsoleColor.Red);
+                        ConsoleTools.WriteMessageInColor($"Registration for login [ {username} ] fails!", ConsoleColor.Red);
                     }
 
                     continue;
@@ -44,22 +45,22 @@ namespace ClientManager
                     Console.Write("Enter your login: ");
                     string username = Console.ReadLine();
                     Console.Write($"Enter your password for login [ {username} ]: ");
-                    string password = Users.BuildPassword();
+                    string password = ConsoleTools.BuildPassword();
 
                     if (await DataAccess.TryUserLogin(username, password))
                     {
-                        WriteMessageInColor($"Welcome, [ {username} ] !", ConsoleColor.Green);
+                        ConsoleTools.WriteMessageInColor($"Welcome, [ {username} ] !", ConsoleColor.Green);
                         break;
                     }
                     else
                     {
-                        WriteMessageInColor("Login or password is incorrect.", ConsoleColor.Red);
+                        ConsoleTools.WriteMessageInColor("Login or password is incorrect.", ConsoleColor.Red);
                     }
                 }
 
                 if (pick == "0")
                 {
-                    WriteMessageInColor("Bye!", ConsoleColor.Yellow);
+                    ConsoleTools.WriteMessageInColor("Bye!", ConsoleColor.Yellow);
                     return;
                 }
             }
@@ -68,71 +69,5 @@ namespace ClientManager
             Console.WriteLine("What is it going to be today?");
             Console.ReadLine();
         }
-
-        
-
-        static void WriteMessageInColor(string message, ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
-            Console.WriteLine(message);
-            Console.ResetColor();
-        }
     }
-
-    static class Users
-    {
-        /// <summary>
-        /// Checks if it is possible to register a user
-        /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        static public async Task<bool> ValidateUserRegistration(string username, string password)
-        {
-            if (username.Length < 3 || password.Length < 3)
-            {
-                return false;
-            }
-
-            if (await DataAccess.IsUserExists(username))
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        /// Makes password invisible while entering
-        /// </summary>
-        /// <returns>String with password</returns>
-        static public string BuildPassword()
-        {
-            StringBuilder sb = new StringBuilder();
-
-            while (true)
-            {
-                ConsoleKeyInfo key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Enter)
-                {
-                    Console.WriteLine();
-                    break;
-                }
-
-                if (!char.IsLetterOrDigit(key.KeyChar))
-                {
-                    continue;
-                }
-
-                sb.Append(key.KeyChar);
-            }
-
-            return sb.ToString();
-        }
-
-
-
-    }
-
-    readonly record struct User(string Username, string Password);
 }

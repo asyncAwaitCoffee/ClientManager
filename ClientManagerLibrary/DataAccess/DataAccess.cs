@@ -119,5 +119,20 @@ namespace ClientManagerLibrary.DataAccess
 
             }
         }
+
+        static public async Task<bool> ValidateUserRegistration(string username, string password)
+        {
+            if (username.Length < 3 || password.Length < 3)
+            {
+                return false;
+            }
+
+            if (await IsUserExists(username))
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
