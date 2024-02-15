@@ -17,23 +17,27 @@ namespace ClientManagerLibrary.DataAccess
         /// For tests only
         /// </summary>
         /// <param name="command">SQL comand string</param>
-        public static async void ExecuteSQLCommand(string command, CommandType commandType, params SqlParameter[] parameters)
+        public static async Task<List<T>> ExecuteSQLCommand<T>(string command, CommandType commandType, params SqlParameter[] parameters)
         {
             // TODO - make as universal sql executor
+            List<T> users = new List<T>();
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
                 SqlCommand sqlCommand = connection.CreateCommand();
 
+                sqlCommand.Parameters.AddRange(parameters);
+
                 sqlCommand.CommandText = command;
                 sqlCommand.CommandType = commandType;
 
-                sqlCommand.Parameters.AddRange(parameters);
-
-                int result = await sqlCommand.ExecuteNonQueryAsync();
-
-                await Console.Out.WriteLineAsync($"{result}");
+                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
             }
+
+            return users;
+
+
 
 
         }

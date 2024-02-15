@@ -50,7 +50,11 @@ namespace ClientManagerForms
         private async void saveClientButton_Click(object sender, EventArgs e)
         {
             await DataAccess.UpdateClient((int)ClientRow.Cells[0].Value, clientSurnameTextBox.Text, clientFullNameTextBox.Text);
-            MessageBox.Show("Client saved!");
+
+            ClientRow.Cells[1].Value = clientSurnameTextBox.Text;
+            ClientRow.Cells[2].Value = clientFullNameTextBox.Text;
+
+            MessageBox.Show("Data successfuly saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
