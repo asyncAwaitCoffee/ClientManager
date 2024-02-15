@@ -23,25 +23,35 @@ namespace ClientManagerForms
 
         private async void LoadClients()
         {
+            int counter = 0;
+
             List<Client> clients = await DataAccess.GetUserClients();
             foreach (Client client in clients)
             {
+                counter++;
+
                 var row = new DataGridViewRow();
                 row.CreateCells(clientsDataGridView);
 
                 row.Cells[0].Value = client.Id;
                 row.Cells[1].Value = client.SurName;
                 row.Cells[2].Value = client.FullName;
-                row.Cells[3].Value = client.AccountId;
+
+                if (counter % 2 == 0)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGray;
+                }
 
                 clientsDataGridView.Rows.Add(row);
             }
-            
+
         }
 
-        private void clientsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void clientsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(clientsDataGridView.CurrentCell.Value.ToString());
+            var x = clientsDataGridView.SelectedCells[0].OwningRow;
+            Form clientForm = new ClientForm(clientsDataGridView.SelectedCells[0].OwningRow);
+            clientForm.ShowDialog();
         }
     }
 }

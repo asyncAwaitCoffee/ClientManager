@@ -17,15 +17,18 @@ namespace ClientManagerLibrary.DataAccess
         /// For tests only
         /// </summary>
         /// <param name="command">SQL comand string</param>
-        public static async void ExecuteSQLCommand(string command)
+        public static async void ExecuteSQLCommand(string command, CommandType commandType, params SqlParameter[] parameters)
         {
+            // TODO - make as universal sql executor
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 await connection.OpenAsync();
                 SqlCommand sqlCommand = connection.CreateCommand();
 
                 sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.CommandType = commandType;
+
+                sqlCommand.Parameters.AddRange(parameters);
 
                 int result = await sqlCommand.ExecuteNonQueryAsync();
 
@@ -197,8 +200,7 @@ namespace ClientManagerLibrary.DataAccess
                             {
                                 Id = result.GetInt32("ID"),
                                 SurName = result.GetString("CLIENT_SURNAME"),
-                                FullName = result.GetString("CLIENT_FULL_NAME"),
-                                AccountId = result.GetInt32("CLIENT_ACCOUNT")
+                                FullName = result.GetString("CLIENT_FULL_NAME")
                             }
                         );
                 }
@@ -206,6 +208,81 @@ namespace ClientManagerLibrary.DataAccess
 
             return clients;
 
+        }
+
+        static public async Task<List<Account>> GetClientAccounts(int clientId)
+        {
+            List<Account> accounts = new List<Account>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string command = "SELECT * FROM CLIENT_MANAGER.CLIENT_ACCOUNTS WHERE CLIENT_ID = @CLIENT_ID";
+
+                await connection.OpenAsync();
+                SqlCommand sqlCommand = connection.CreateCommand();
+
+                SqlParameter[] parameters =
+                {
+                    new SqlParameter("@CLIENT_ID", clientId),
+                };
+
+                sqlCommand.Parameters.AddRange(parameters);
+
+                sqlCommand.CommandText = command;
+                sqlCommand.CommandType = CommandType.Text;
+
+                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
+
+                while (await result.ReadAsync())
+                {
+                    accounts.Add(
+                            new Account()
+                            {
+                                Id = result.GetInt32("ID"),
+                                Code = result.GetString("CODE"),
+                                Balance = result.GetDecimal("BALANCE")
+                            }
+                        );
+                }
+            }
+
+            return accounts;
+        }
+
+        //TODO - update a list of client data
+        static async public Task<bool> UpdateClient(int clientId, string surName, string fullname)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string command = """
+                    UPDATE CLIENT_MANAGER.CLIENTS
+                    SET CLIENT_FULL_NAME = @CLIENT_FULL_NAME,
+                    CLIENT_SURNAME = @CLIENT_SURNAME
+                    WHERE ID = @CLIENT_ID
+                    """;
+
+                await connection.OpenAsync();
+                SqlCommand sqlCommand = connection.CreateCommand();
+
+                SqlParameter[] parameters =
+                {
+                    new SqlParameter("@CLIENT_ID", clientId),
+                    new SqlParameter("@CLIENT_SURNAME", surName),
+                    new SqlParameter("@CLIENT_FULL_NAME", fullname),
+                };
+
+                sqlCommand.Parameters.AddRange(parameters);
+
+                sqlCommand.CommandText = command;
+                sqlCommand.CommandType = CommandType.Text;
+
+                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
+
+            }
+
+            return true;
         }
     }
 }
