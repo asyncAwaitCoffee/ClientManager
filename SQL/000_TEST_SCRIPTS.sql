@@ -1,5 +1,5 @@
-SELECT *, len(encrypted_password) FROM CLIENT_MANAGER.USERS
-
+SELECT * FROM CLIENT_MANAGER.USERS
+SELECT * FROM CLIENT_MANAGER.CLIENTS
 
 /*
 SELECT  usecounts, cacheobjtype, objtype, text   
