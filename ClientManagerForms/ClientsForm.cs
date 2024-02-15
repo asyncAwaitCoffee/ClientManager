@@ -31,11 +31,15 @@ namespace ClientManagerForms
                 counter++;
 
                 var row = new DataGridViewRow();
+                row.Height = 50;
                 row.CreateCells(clientsDataGridView);
 
                 row.Cells[0].Value = client.Id;
                 row.Cells[1].Value = client.SurName;
                 row.Cells[2].Value = client.FullName;
+
+                // TODO - vip check
+                row.Cells[4].Value = true;
 
                 if (counter % 2 == 0)
                 {
@@ -43,6 +47,7 @@ namespace ClientManagerForms
                 }
 
                 clientsDataGridView.Rows.Add(row);
+
             }
 
         }
@@ -53,5 +58,6 @@ namespace ClientManagerForms
             Form clientForm = new ClientForm(clientsDataGridView.SelectedCells[0].OwningRow);
             clientForm.ShowDialog();
         }
+
     }
 }
