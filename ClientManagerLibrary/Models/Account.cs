@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ClientManagerLibrary.Models
 {
-    public class Client
+    public class Account
     {
         public int Id { get; set; }
-        public string SurName { get; set; }
-        public string FullName { get; set; }
-
+        public string Code{ get; set; }
+        public decimal Balance { get; set; }
     }
 }

@@ -56,7 +56,7 @@
             clientsDataGridView.ReadOnly = true;
             clientsDataGridView.Size = new Size(839, 312);
             clientsDataGridView.TabIndex = 1;
-            clientsDataGridView.CellContentClick += clientsDataGridView_CellContentClick;
+            clientsDataGridView.CellDoubleClick += clientsDataGridView_CellDoubleClick;
             // 
             // clientId
             // 

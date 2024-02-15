@@ -79,7 +79,7 @@
             loginButton.Name = "loginButton";
             loginButton.Size = new Size(176, 61);
             loginButton.TabIndex = 4;
-            loginButton.Text = "Log In";
+            loginButton.Text = "&Log In";
             loginButton.UseVisualStyleBackColor = true;
             loginButton.Click += loginButton_Click;
             // 
