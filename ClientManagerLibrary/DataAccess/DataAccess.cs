@@ -2,6 +2,7 @@
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -169,6 +170,41 @@ namespace ClientManagerLibrary.DataAccess
             }
 
             return users;
+
+        }
+
+        static public async Task<List<Client>> GetUserClients()
+        {
+            List<Client> clients = new List<Client>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string command = "SELECT * FROM CLIENT_MANAGER.CLIENTS";
+
+                await connection.OpenAsync();
+                SqlCommand sqlCommand = connection.CreateCommand();
+
+                sqlCommand.CommandText = command;
+                sqlCommand.CommandType = CommandType.Text;
+
+                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
+
+                while (await result.ReadAsync())
+                {
+                    clients.Add(
+                            new Client()
+                            {
+                                Id = result.GetInt32("ID"),
+                                SurName = result.GetString("CLIENT_SURNAME"),
+                                FullName = result.GetString("CLIENT_FULL_NAME"),
+                                AccountId = result.GetInt32("CLIENT_ACCOUNT")
+                            }
+                        );
+                }
+            }
+
+            return clients;
 
         }
     }

@@ -14,7 +14,11 @@ namespace ClientManagerForms
         {
             if (loginTextBox.Text.Length > 0 && await DataAccess.TryUserLogin(loginTextBox.Text, passwordTextBox.Text))
             {
-                this.Close();
+                loginTextBox.Text = "";
+                passwordTextBox.Text = "";
+
+                Form clientsForm = new ClientsForm();
+                clientsForm.ShowDialog();
             }
         }
 
@@ -36,6 +40,7 @@ namespace ClientManagerForms
                 loginInfoLabel.ForeColor = Color.Red;
                 loginInfoLabel.Text = "Err, oh no!";
             }
+            
         }
 
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)
