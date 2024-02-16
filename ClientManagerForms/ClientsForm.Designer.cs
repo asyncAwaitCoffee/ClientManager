@@ -32,7 +32,6 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientsForm));
             clientsDataGridView = new DataGridView();
             clientsFormNotifyIcon = new NotifyIcon(components);
@@ -56,6 +55,7 @@
             clientsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             clientsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             clientsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
@@ -74,7 +74,6 @@
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             clientsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            clientsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             clientsDataGridView.RowTemplate.Height = 50;
             clientsDataGridView.Size = new Size(934, 454);
             clientsDataGridView.TabIndex = 1;

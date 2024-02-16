@@ -177,20 +177,27 @@ namespace ClientManagerLibrary.DataAccess
 
         }
 
-        public static async Task<BindingList<Client>> GetUserClients()
+        public static async Task<BindingList<Client>> GetUserClients(int userId)
         {
             BindingList<Client> clients = new BindingList<Client>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
-                string command = "SELECT * FROM CLIENT_MANAGER.CLIENTS";
+                string command = "CLIENT_MANAGER.GET_USER_CLIENTS";
 
                 await connection.OpenAsync();
                 SqlCommand sqlCommand = connection.CreateCommand();
 
+                SqlParameter[] parameters =
+                {
+                    new SqlParameter("@USER_ID", userId),
+                };
+
+                sqlCommand.Parameters.AddRange(parameters);
+
                 sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
 
@@ -203,7 +210,7 @@ namespace ClientManagerLibrary.DataAccess
                                 SurName = result.GetString("CLIENT_SURNAME"),
                                 Name = result.GetString("CLIENT_NAME"),
                                 Gender = result.GetBoolean("GENDER") ? 1 : 0,
-                                isVIP = true,
+                                isVIP = result.GetBoolean("IS_VIP"),
                                 AccountsId = -1
                             }
                         );

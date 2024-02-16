@@ -26,7 +26,7 @@ namespace ClientManagerForms
         {
             int counter = 0;
 
-            _clients = await DataAccess.GetUserClients();
+            _clients = await DataAccess.GetUserClients(1);
             //foreach (Client client in clients)
             //{
             //    counter++;
@@ -53,6 +53,7 @@ namespace ClientManagerForms
             
             clientsDataGridView.DataSource = _clients;
 
+            clientsDataGridView.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             clientsDataGridView.Columns["isVIP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         }
