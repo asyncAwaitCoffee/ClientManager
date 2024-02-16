@@ -37,9 +37,6 @@ namespace ClientManagerLibrary.DataAccess
 
             return users;
 
-
-
-
         }
         /// <summary>
         /// Saves user's login and encrypted password to the DB
@@ -129,7 +126,7 @@ namespace ClientManagerLibrary.DataAccess
             }
         }
 
-        static public async Task<bool> ValidateUserRegistration(string username, string password)
+        public static async Task<bool> ValidateUserRegistration(string username, string password)
         {
             if (username.Length < 3 || password.Length < 3)
             {
@@ -148,7 +145,7 @@ namespace ClientManagerLibrary.DataAccess
         /// For tests only
         /// </summary>
         /// <returns>All users</returns>
-        static public async Task<List<User>> GetAllUsers()
+        public static async Task<List<User>> GetAllUsers()
         {
             List<User> users = new List<User>();
 
@@ -180,20 +177,27 @@ namespace ClientManagerLibrary.DataAccess
 
         }
 
-        static public async Task<List<Client>> GetUserClients()
+        public static async Task<BindingList<Client>> GetUserClients(int userId)
         {
-            List<Client> clients = new List<Client>();
+            BindingList<Client> clients = new BindingList<Client>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
-                string command = "SELECT * FROM CLIENT_MANAGER.CLIENTS";
+                string command = "CLIENT_MANAGER.GET_USER_CLIENTS";
 
                 await connection.OpenAsync();
                 SqlCommand sqlCommand = connection.CreateCommand();
 
+                SqlParameter[] parameters =
+                {
+                    new SqlParameter("@USER_ID", userId),
+                };
+
+                sqlCommand.Parameters.AddRange(parameters);
+
                 sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
 
@@ -204,7 +208,10 @@ namespace ClientManagerLibrary.DataAccess
                             {
                                 Id = result.GetInt32("ID"),
                                 SurName = result.GetString("CLIENT_SURNAME"),
-                                FullName = result.GetString("CLIENT_FULL_NAME")
+                                Name = result.GetString("CLIENT_NAME"),
+                                Gender = result.GetBoolean("GENDER") ? 1 : 0,
+                                isVIP = result.GetBoolean("IS_VIP"),
+                                AccountsId = -1
                             }
                         );
                 }
@@ -214,7 +221,7 @@ namespace ClientManagerLibrary.DataAccess
 
         }
 
-        static public async Task<List<Account>> GetClientAccounts(int clientId)
+        public static async Task<List<Account>> GetClientAccounts(int clientId)
         {
             List<Account> accounts = new List<Account>();
 
@@ -255,14 +262,14 @@ namespace ClientManagerLibrary.DataAccess
         }
 
         //TODO - update a list of client data
-        static async public Task<bool> UpdateClient(int clientId, string surName, string fullname)
+        public static async Task<bool> UpdateClient(int clientId, string surName, string fullname)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
                 string command = """
                     UPDATE CLIENT_MANAGER.CLIENTS
-                    SET CLIENT_FULL_NAME = @CLIENT_FULL_NAME,
+                    SET CLIENT_NAME = @CLIENT_NAME,
                     CLIENT_SURNAME = @CLIENT_SURNAME
                     WHERE ID = @CLIENT_ID
                     """;
@@ -274,7 +281,7 @@ namespace ClientManagerLibrary.DataAccess
                 {
                     new SqlParameter("@CLIENT_ID", clientId),
                     new SqlParameter("@CLIENT_SURNAME", surName),
-                    new SqlParameter("@CLIENT_FULL_NAME", fullname),
+                    new SqlParameter("@CLIENT_NAME", fullname),
                 };
 
                 sqlCommand.Parameters.AddRange(parameters);
@@ -287,6 +294,46 @@ namespace ClientManagerLibrary.DataAccess
             }
 
             return true;
+        }
+
+        public static async Task<int> CreateNewClient(string surname, string name, int gender)
+        {
+            int clientId = -1;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string command = "CLIENT_MANAGER.CREATE_CLIENT";
+
+                await connection.OpenAsync();
+                SqlCommand sqlCommand = connection.CreateCommand();
+
+                 
+
+                SqlParameter[] parameters =
+                {
+                    new SqlParameter
+                    {
+                        ParameterName = "@CLIENT_ID",
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Output
+                    },
+                    new SqlParameter("@CLIENT_SURNAME", surname),
+                    new SqlParameter("@CLIENT_NAME", name),
+                    new SqlParameter("@GENDER", gender),
+                };
+
+                sqlCommand.Parameters.AddRange(parameters);
+
+                sqlCommand.CommandText = command;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                await sqlCommand.ExecuteNonQueryAsync();
+
+                clientId = (int)sqlCommand.Parameters["@CLIENT_ID"].Value;
+
+            }
+
+            return clientId;
         }
     }
 }

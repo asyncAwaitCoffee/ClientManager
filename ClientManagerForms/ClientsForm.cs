@@ -14,12 +14,10 @@ namespace ClientManagerForms
 {
     public partial class ClientsForm : Form
     {
+        private BindingList<Client> _clients;
         public ClientsForm()
         {
             InitializeComponent();
-
-            //notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
-
 
             LoadClients();
         }
@@ -28,30 +26,35 @@ namespace ClientManagerForms
         {
             int counter = 0;
 
-            List<Client> clients = await DataAccess.GetUserClients();
-            foreach (Client client in clients)
-            {
-                counter++;
+            _clients = await DataAccess.GetUserClients(1);
+            //foreach (Client client in clients)
+            //{
+            //    counter++;
 
-                var row = new DataGridViewRow();
-                row.Height = 50;
-                row.CreateCells(clientsDataGridView);
+            //    var row = new DataGridViewRow();
+            //    row.Height = 50;
+            //    row.CreateCells(clientsDataGridView);
 
-                row.Cells[0].Value = client.Id;
-                row.Cells[1].Value = client.SurName;
-                row.Cells[2].Value = client.FullName;
+            //    row.Cells[0].Value = client.Id;
+            //    row.Cells[1].Value = client.SurName;
+            //    row.Cells[2].Value = client.FullName;
 
-                // TODO - vip check
-                row.Cells[4].Value = true;
+            //    // TODO - vip check
+            //    row.Cells[4].Value = true;
 
-                if (counter % 2 == 0)
-                {
-                    row.DefaultCellStyle.BackColor = Color.LightGray;
-                }
+            //    if (counter % 2 == 0)
+            //    {
+            //        row.DefaultCellStyle.BackColor = Color.LightGray;
+            //    }
 
-                clientsDataGridView.Rows.Add(row);
+            //    clientsDataGridView.Rows.Add(row);
 
-            }
+            //}
+            
+            clientsDataGridView.DataSource = _clients;
+
+            clientsDataGridView.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            clientsDataGridView.Columns["isVIP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         }
 
@@ -82,7 +85,7 @@ namespace ClientManagerForms
 
         private void createMenuSubItemClient_Click(object sender, EventArgs e)
         {
-            Form clientNewForm = new ClientNewForm();
+            Form clientNewForm = new ClientNewForm(_clients);
             clientNewForm.ShowDialog();
         }
     }

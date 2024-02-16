@@ -89,10 +89,11 @@
             balanceTextBox.Size = new Size(147, 39);
             balanceTextBox.TabIndex = 5;
             // 
-            // ClientForm
+            // ClientEditForm
             // 
             AutoScaleDimensions = new SizeF(18F, 45F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(471, 433);
             Controls.Add(balanceTextBox);
             Controls.Add(clientSurnameTextBox);
@@ -102,7 +103,7 @@
             Controls.Add(clientFullNameTextBox);
             Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(8, 9, 8, 9);
-            Name = "ClientForm";
+            Name = "ClientEditForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "ClientForm";
             ResumeLayout(false);

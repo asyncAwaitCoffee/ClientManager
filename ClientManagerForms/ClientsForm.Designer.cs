@@ -29,21 +29,11 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientsForm));
             clientsDataGridView = new DataGridView();
-            clientId = new DataGridViewTextBoxColumn();
-            surName = new DataGridViewTextBoxColumn();
-            fullName = new DataGridViewTextBoxColumn();
-            accountId = new DataGridViewTextBoxColumn();
-            checkClientColumn = new DataGridViewCheckBoxColumn();
-            totalBalance = new DataGridViewTextBoxColumn();
             clientsFormNotifyIcon = new NotifyIcon(components);
             menuStrip1 = new MenuStrip();
             createMenuItem = new ToolStripMenuItem();
@@ -61,100 +51,33 @@
             // 
             clientsDataGridView.AllowUserToAddRows = false;
             clientsDataGridView.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            clientsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            clientsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             clientsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            clientsDataGridView.Columns.AddRange(new DataGridViewColumn[] { clientId, surName, fullName, accountId, checkClientColumn, totalBalance });
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            clientsDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            clientsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             clientsDataGridView.Location = new Point(10, 115);
             clientsDataGridView.Margin = new Padding(2);
             clientsDataGridView.Name = "clientsDataGridView";
             clientsDataGridView.ReadOnly = true;
             clientsDataGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = Color.Silver;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
-            clientsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            clientsDataGridView.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            clientsDataGridView.RowTemplate.DefaultCellStyle.Padding = new Padding(5);
-            clientsDataGridView.RowTemplate.Height = 200;
+            dataGridViewCellStyle3.BackColor = Color.Silver;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            clientsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            clientsDataGridView.RowTemplate.Height = 50;
             clientsDataGridView.Size = new Size(934, 454);
             clientsDataGridView.TabIndex = 1;
             clientsDataGridView.CellDoubleClick += clientsDataGridView_CellDoubleClick;
-            // 
-            // clientId
-            // 
-            clientId.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            clientId.DefaultCellStyle = dataGridViewCellStyle1;
-            clientId.FillWeight = 20F;
-            clientId.HeaderText = "Id";
-            clientId.Name = "clientId";
-            clientId.ReadOnly = true;
-            clientId.Width = 65;
-            // 
-            // surName
-            // 
-            surName.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            surName.DefaultCellStyle = dataGridViewCellStyle2;
-            surName.FillWeight = 40F;
-            surName.HeaderText = "SurName";
-            surName.Name = "surName";
-            surName.ReadOnly = true;
-            surName.Width = 151;
-            // 
-            // fullName
-            // 
-            fullName.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            fullName.DefaultCellStyle = dataGridViewCellStyle3;
-            fullName.FillWeight = 40F;
-            fullName.HeaderText = "Full Name";
-            fullName.Name = "fullName";
-            fullName.ReadOnly = true;
-            fullName.Width = 162;
-            // 
-            // accountId
-            // 
-            accountId.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            accountId.DefaultCellStyle = dataGridViewCellStyle4;
-            accountId.FillWeight = 30F;
-            accountId.HeaderText = "AccountId";
-            accountId.Name = "accountId";
-            accountId.ReadOnly = true;
-            accountId.Width = 161;
-            // 
-            // checkClientColumn
-            // 
-            checkClientColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.NullValue = false;
-            dataGridViewCellStyle5.Padding = new Padding(5);
-            checkClientColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            checkClientColumn.FillWeight = 20F;
-            checkClientColumn.HeaderText = "VIP";
-            checkClientColumn.Name = "checkClientColumn";
-            checkClientColumn.ReadOnly = true;
-            checkClientColumn.Width = 62;
-            // 
-            // totalBalance
-            // 
-            totalBalance.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            totalBalance.HeaderText = "Total Balance";
-            totalBalance.Name = "totalBalance";
-            totalBalance.ReadOnly = true;
-            totalBalance.Width = 197;
             // 
             // clientsFormNotifyIcon
             // 
@@ -225,6 +148,7 @@
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(955, 580);
             Controls.Add(clientsDataGridView);
             Controls.Add(menuStrip1);
@@ -260,11 +184,5 @@
         private ToolStripMenuItem transactionsMenuItem;
         private ToolStripMenuItem transactionsMenuItemNew;
         private ToolStripMenuItem transactionsMenuItemStatus;
-        private DataGridViewTextBoxColumn clientId;
-        private DataGridViewTextBoxColumn surName;
-        private DataGridViewTextBoxColumn fullName;
-        private DataGridViewTextBoxColumn accountId;
-        private DataGridViewCheckBoxColumn checkClientColumn;
-        private DataGridViewTextBoxColumn totalBalance;
     }
 }
