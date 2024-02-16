@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             loginTextBox = new TextBox();
             passwordTextBox = new TextBox();
             loginLabel = new Label();
@@ -35,6 +36,8 @@
             loginButton = new Button();
             registerButton = new Button();
             loginInfoLabel = new Label();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // loginTextBox
@@ -103,6 +106,10 @@
             loginInfoLabel.Size = new Size(0, 25);
             loginInfoLabel.TabIndex = 6;
             // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(18F, 45F);
@@ -127,6 +134,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registration";
             KeyDown += LoginForm_KeyDown;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -140,5 +148,6 @@
         private Button loginButton;
         private Button registerButton;
         private Label loginInfoLabel;
+        private ErrorProvider errorProvider1;
     }
 }

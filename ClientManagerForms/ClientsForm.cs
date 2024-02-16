@@ -58,7 +58,7 @@ namespace ClientManagerForms
         private void clientsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var x = clientsDataGridView.SelectedCells[0].OwningRow;
-            Form clientForm = new ClientForm(clientsDataGridView.SelectedCells[0].OwningRow);
+            Form clientForm = new ClientEditForm(clientsDataGridView.SelectedCells[0].OwningRow);
             clientForm.ShowDialog();
         }
 
@@ -78,6 +78,12 @@ namespace ClientManagerForms
         private void clientsFormNotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+        }
+
+        private void createMenuSubItemClient_Click(object sender, EventArgs e)
+        {
+            Form clientNewForm = new ClientNewForm();
+            clientNewForm.ShowDialog();
         }
     }
 }
