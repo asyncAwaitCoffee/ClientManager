@@ -201,7 +201,10 @@ namespace ClientManagerLibrary.DataAccess
                             {
                                 Id = result.GetInt32("ID"),
                                 SurName = result.GetString("CLIENT_SURNAME"),
-                                Name = result.GetString("CLIENT_NAME")
+                                Name = result.GetString("CLIENT_NAME"),
+                                Gender = result.GetBoolean("GENDER") ? 1 : 0,
+                                isVIP = true,
+                                AccountsId = -1
                             }
                         );
                 }
