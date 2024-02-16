@@ -16,5 +16,10 @@ namespace ClientManagerForms
         {
             InitializeComponent();
         }
+
+        private void createClientButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

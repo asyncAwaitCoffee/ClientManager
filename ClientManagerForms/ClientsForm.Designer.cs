@@ -225,6 +225,7 @@
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
             ClientSize = new Size(955, 580);
             Controls.Add(clientsDataGridView);
             Controls.Add(menuStrip1);
