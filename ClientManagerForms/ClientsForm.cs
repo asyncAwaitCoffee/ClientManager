@@ -18,6 +18,9 @@ namespace ClientManagerForms
         {
             InitializeComponent();
 
+            //notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+
+
             LoadClients();
         }
 
@@ -59,5 +62,22 @@ namespace ClientManagerForms
             clientForm.ShowDialog();
         }
 
+        private void ClientsForm_SizeChanged(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                clientsFormNotifyIcon.ShowBalloonTip(5);
+            }
+        }
+
+        private void clientsFormNotifyIcon_BalloonTipClicked(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void clientsFormNotifyIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+        }
     }
 }
