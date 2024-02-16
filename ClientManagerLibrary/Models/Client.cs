@@ -10,7 +10,10 @@ namespace ClientManagerLibrary.Models
     {
         public int Id { get; set; }
         public string SurName { get; set; }
-        public string FullName { get; set; }
+        public string Name { get; set; }
+        public bool isVIP { get; set; }
+        public int AccountsId { get; set; }
+        public int Gender { get; set; }
 
     }
 }

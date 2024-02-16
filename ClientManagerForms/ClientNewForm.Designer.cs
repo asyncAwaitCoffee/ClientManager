@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            surnameTextBox = new TextBox();
+            nameTextBox = new TextBox();
             surnameLabel = new Label();
             nameLabel = new Label();
             newClientInfoLabel = new Label();
             maleRadioButton = new RadioButton();
             femaleRadioButton = new RadioButton();
-            panel1 = new Panel();
+            genderPanel = new Panel();
             createClientButton = new Button();
-            panel1.SuspendLayout();
+            genderPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // surnameTextBox
             // 
-            textBox1.Location = new Point(48, 96);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(298, 39);
-            textBox1.TabIndex = 0;
+            surnameTextBox.Location = new Point(48, 96);
+            surnameTextBox.Name = "surnameTextBox";
+            surnameTextBox.Size = new Size(298, 39);
+            surnameTextBox.TabIndex = 0;
             // 
-            // textBox2
+            // nameTextBox
             // 
-            textBox2.Location = new Point(48, 175);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(298, 39);
-            textBox2.TabIndex = 1;
+            nameTextBox.Location = new Point(48, 175);
+            nameTextBox.Name = "nameTextBox";
+            nameTextBox.Size = new Size(298, 39);
+            nameTextBox.TabIndex = 1;
             // 
             // surnameLabel
             // 
@@ -92,6 +92,7 @@
             maleRadioButton.Size = new Size(72, 29);
             maleRadioButton.TabIndex = 7;
             maleRadioButton.TabStop = true;
+            maleRadioButton.Tag = "1";
             maleRadioButton.Text = "Male";
             maleRadioButton.UseVisualStyleBackColor = true;
             // 
@@ -103,17 +104,18 @@
             femaleRadioButton.Name = "femaleRadioButton";
             femaleRadioButton.Size = new Size(90, 29);
             femaleRadioButton.TabIndex = 8;
+            femaleRadioButton.Tag = "0";
             femaleRadioButton.Text = "Female";
             femaleRadioButton.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // genderPanel
             // 
-            panel1.Controls.Add(maleRadioButton);
-            panel1.Controls.Add(femaleRadioButton);
-            panel1.Location = new Point(92, 229);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(180, 38);
-            panel1.TabIndex = 9;
+            genderPanel.Controls.Add(maleRadioButton);
+            genderPanel.Controls.Add(femaleRadioButton);
+            genderPanel.Location = new Point(92, 229);
+            genderPanel.Name = "genderPanel";
+            genderPanel.Size = new Size(180, 38);
+            genderPanel.TabIndex = 9;
             // 
             // createClientButton
             // 
@@ -132,32 +134,32 @@
             BackColor = Color.White;
             ClientSize = new Size(394, 358);
             Controls.Add(createClientButton);
-            Controls.Add(panel1);
+            Controls.Add(genderPanel);
             Controls.Add(newClientInfoLabel);
             Controls.Add(nameLabel);
             Controls.Add(surnameLabel);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(nameTextBox);
+            Controls.Add(surnameTextBox);
             Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(6);
             Name = "ClientNewForm";
             Text = "New Client";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            genderPanel.ResumeLayout(false);
+            genderPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox surnameTextBox;
+        private TextBox nameTextBox;
         private Label surnameLabel;
         private Label nameLabel;
         private Label newClientInfoLabel;
         private RadioButton maleRadioButton;
         private RadioButton femaleRadioButton;
-        private Panel panel1;
+        private Panel genderPanel;
         private Button createClientButton;
     }
 }
