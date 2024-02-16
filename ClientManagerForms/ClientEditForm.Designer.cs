@@ -1,6 +1,6 @@
 ﻿namespace ClientManagerForms
 {
-    partial class ClientForm
+    partial class ClientEditForm
     {
         /// <summary>
         /// Required designer variable.

@@ -43,8 +43,18 @@
             fullName = new DataGridViewTextBoxColumn();
             accountId = new DataGridViewTextBoxColumn();
             checkClientColumn = new DataGridViewCheckBoxColumn();
+            totalBalance = new DataGridViewTextBoxColumn();
             clientsFormNotifyIcon = new NotifyIcon(components);
+            menuStrip1 = new MenuStrip();
+            createMenuItem = new ToolStripMenuItem();
+            createMenuSubItemClient = new ToolStripMenuItem();
+            createMenuSubItemAccount = new ToolStripMenuItem();
+            createMenuSubItemManager = new ToolStripMenuItem();
+            transactionsMenuItem = new ToolStripMenuItem();
+            transactionsMenuItemNew = new ToolStripMenuItem();
+            transactionsMenuItemStatus = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)clientsDataGridView).BeginInit();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // clientsDataGridView
@@ -52,7 +62,7 @@
             clientsDataGridView.AllowUserToAddRows = false;
             clientsDataGridView.AllowUserToDeleteRows = false;
             clientsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            clientsDataGridView.Columns.AddRange(new DataGridViewColumn[] { clientId, surName, fullName, accountId, checkClientColumn });
+            clientsDataGridView.Columns.AddRange(new DataGridViewColumn[] { clientId, surName, fullName, accountId, checkClientColumn, totalBalance });
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle6.BackColor = SystemColors.Window;
             dataGridViewCellStyle6.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -77,7 +87,7 @@
             clientsDataGridView.RowTemplate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             clientsDataGridView.RowTemplate.DefaultCellStyle.Padding = new Padding(5);
             clientsDataGridView.RowTemplate.Height = 200;
-            clientsDataGridView.Size = new Size(699, 279);
+            clientsDataGridView.Size = new Size(934, 454);
             clientsDataGridView.TabIndex = 1;
             clientsDataGridView.CellDoubleClick += clientsDataGridView_CellDoubleClick;
             // 
@@ -138,6 +148,14 @@
             checkClientColumn.ReadOnly = true;
             checkClientColumn.Width = 62;
             // 
+            // totalBalance
+            // 
+            totalBalance.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            totalBalance.HeaderText = "Total Balance";
+            totalBalance.Name = "totalBalance";
+            totalBalance.ReadOnly = true;
+            totalBalance.Width = 197;
+            // 
             // clientsFormNotifyIcon
             // 
             clientsFormNotifyIcon.BalloonTipIcon = ToolTipIcon.Info;
@@ -149,14 +167,70 @@
             clientsFormNotifyIcon.BalloonTipClicked += clientsFormNotifyIcon_BalloonTipClicked;
             clientsFormNotifyIcon.MouseClick += clientsFormNotifyIcon_MouseClick;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { createMenuItem, transactionsMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(955, 24);
+            menuStrip1.TabIndex = 2;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // createMenuItem
+            // 
+            createMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createMenuSubItemClient, createMenuSubItemAccount, createMenuSubItemManager });
+            createMenuItem.Name = "createMenuItem";
+            createMenuItem.Size = new Size(53, 20);
+            createMenuItem.Text = "Create";
+            // 
+            // createMenuSubItemClient
+            // 
+            createMenuSubItemClient.Name = "createMenuSubItemClient";
+            createMenuSubItemClient.Size = new Size(121, 22);
+            createMenuSubItemClient.Text = "Client";
+            createMenuSubItemClient.Click += createMenuSubItemClient_Click;
+            // 
+            // createMenuSubItemAccount
+            // 
+            createMenuSubItemAccount.Name = "createMenuSubItemAccount";
+            createMenuSubItemAccount.Size = new Size(121, 22);
+            createMenuSubItemAccount.Text = "Account";
+            // 
+            // createMenuSubItemManager
+            // 
+            createMenuSubItemManager.Name = "createMenuSubItemManager";
+            createMenuSubItemManager.Size = new Size(121, 22);
+            createMenuSubItemManager.Text = "Manager";
+            // 
+            // transactionsMenuItem
+            // 
+            transactionsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { transactionsMenuItemNew, transactionsMenuItemStatus });
+            transactionsMenuItem.Name = "transactionsMenuItem";
+            transactionsMenuItem.Size = new Size(84, 20);
+            transactionsMenuItem.Text = "Transactions";
+            // 
+            // transactionsMenuItemNew
+            // 
+            transactionsMenuItemNew.Name = "transactionsMenuItemNew";
+            transactionsMenuItemNew.Size = new Size(106, 22);
+            transactionsMenuItemNew.Text = "New";
+            // 
+            // transactionsMenuItemStatus
+            // 
+            transactionsMenuItemStatus.Name = "transactionsMenuItemStatus";
+            transactionsMenuItemStatus.Size = new Size(106, 22);
+            transactionsMenuItemStatus.Text = "Status";
+            // 
             // ClientsForm
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(719, 412);
+            ClientSize = new Size(955, 580);
             Controls.Add(clientsDataGridView);
+            Controls.Add(menuStrip1);
             Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MainMenuStrip = menuStrip1;
             Margin = new Padding(7);
             Name = "ClientsForm";
             ShowInTaskbar = false;
@@ -164,7 +238,10 @@
             Text = "ClientsForm";
             SizeChanged += ClientsForm_SizeChanged;
             ((System.ComponentModel.ISupportInitialize)clientsDataGridView).EndInit();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -174,11 +251,20 @@
         private ColumnHeader columnHeader2;
         private ColumnHeader columnHeader3;
         private ColumnHeader columnHeader4;
+        private NotifyIcon clientsFormNotifyIcon;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem createMenuItem;
+        private ToolStripMenuItem createMenuSubItemClient;
+        private ToolStripMenuItem createMenuSubItemAccount;
+        private ToolStripMenuItem createMenuSubItemManager;
+        private ToolStripMenuItem transactionsMenuItem;
+        private ToolStripMenuItem transactionsMenuItemNew;
+        private ToolStripMenuItem transactionsMenuItemStatus;
         private DataGridViewTextBoxColumn clientId;
         private DataGridViewTextBoxColumn surName;
         private DataGridViewTextBoxColumn fullName;
         private DataGridViewTextBoxColumn accountId;
         private DataGridViewCheckBoxColumn checkClientColumn;
-        private NotifyIcon clientsFormNotifyIcon;
+        private DataGridViewTextBoxColumn totalBalance;
     }
 }

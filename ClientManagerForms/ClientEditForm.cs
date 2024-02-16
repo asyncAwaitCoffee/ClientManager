@@ -13,12 +13,12 @@ using System.Windows.Forms;
 
 namespace ClientManagerForms
 {
-    public partial class ClientForm : Form
+    public partial class ClientEditForm : Form
     {
         private DataGridViewRow ClientRow { get; set; }
         private BindingList<Account> Accounts { get; set; } = new BindingList<Account>();
 
-        public ClientForm(DataGridViewRow clientRow)
+        public ClientEditForm(DataGridViewRow clientRow)
         {
             ClientRow = clientRow;
 
@@ -49,6 +49,13 @@ namespace ClientManagerForms
 
         private async void saveClientButton_Click(object sender, EventArgs e)
         {
+            var result = MessageBox.Show("Confirm the change", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+
+            if (result != DialogResult.OK)
+            {
+                return;
+            }
+
             await DataAccess.UpdateClient((int)ClientRow.Cells[0].Value, clientSurnameTextBox.Text, clientFullNameTextBox.Text);
 
             ClientRow.Cells[1].Value = clientSurnameTextBox.Text;
