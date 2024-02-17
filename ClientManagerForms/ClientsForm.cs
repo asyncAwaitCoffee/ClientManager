@@ -25,7 +25,7 @@ namespace ClientManagerForms
         private async void LoadClients()
         {
             int counter = 0;
-
+            // TODO - managerId
             _clients = await DataAccess.GetUserClients(1);
             //foreach (Client client in clients)
             //{
@@ -39,7 +39,6 @@ namespace ClientManagerForms
             //    row.Cells[1].Value = client.SurName;
             //    row.Cells[2].Value = client.FullName;
 
-            //    // TODO - vip check
             //    row.Cells[4].Value = true;
 
             //    if (counter % 2 == 0)
@@ -55,6 +54,7 @@ namespace ClientManagerForms
 
             clientsDataGridView.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             clientsDataGridView.Columns["isVIP"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            clientsDataGridView.Columns["GenderChar"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         }
 

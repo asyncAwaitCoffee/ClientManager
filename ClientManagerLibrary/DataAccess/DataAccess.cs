@@ -142,7 +142,7 @@ namespace ClientManagerLibrary.DataAccess
         }
 
         /// <summary>
-        /// For tests only
+        /// For console tests only
         /// </summary>
         /// <returns>All users</returns>
         public static async Task<List<User>> GetAllUsers()
@@ -165,10 +165,7 @@ namespace ClientManagerLibrary.DataAccess
                 while (await result.ReadAsync())
                 {
                     users.Add(
-                            new User() { 
-                                Id = result.GetInt32("ID"),
-                                Name = result.GetString("USER_LOGIN")
-                            }
+                            new User(result.GetInt32("ID"), result.GetString("USER_LOGIN"))
                         );
                 }
             }
@@ -211,6 +208,7 @@ namespace ClientManagerLibrary.DataAccess
                                 Name = result.GetString("CLIENT_NAME"),
                                 Gender = result.GetBoolean("GENDER") ? 1 : 0,
                                 isVIP = result.GetBoolean("IS_VIP"),
+                                // TODO - AccountsId
                                 AccountsId = -1
                             }
                         );
@@ -296,7 +294,7 @@ namespace ClientManagerLibrary.DataAccess
             return true;
         }
 
-        public static async Task<int> CreateNewClient(string surname, string name, int gender)
+        public static async Task<int> CreateNewClient(string surname, string name, int gender, int managerId)
         {
             int clientId = -1;
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -320,6 +318,7 @@ namespace ClientManagerLibrary.DataAccess
                     new SqlParameter("@CLIENT_SURNAME", surname),
                     new SqlParameter("@CLIENT_NAME", name),
                     new SqlParameter("@GENDER", gender),
+                    new SqlParameter("@MANAGER_ID", managerId),
                 };
 
                 sqlCommand.Parameters.AddRange(parameters);

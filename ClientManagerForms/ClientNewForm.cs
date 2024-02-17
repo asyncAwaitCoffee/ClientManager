@@ -1,4 +1,5 @@
-﻿using ClientManagerLibrary.DataAccess;
+﻿using ClientManagerLibrary;
+using ClientManagerLibrary.DataAccess;
 using ClientManagerLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,10 @@ namespace ClientManagerForms
         private async void createClientButton_Click(object sender, EventArgs e)
         {
             int gender = int.Parse((string)genderPanel.Controls.OfType<RadioButton>().First(r => r.Checked).Tag);
-            int clientId = await DataAccess.CreateNewClient(surnameTextBox.Text, nameTextBox.Text, gender);
+            // TODO - managerId
+            int managerId = Manager.Instance().Id;
+
+            int clientId = await DataAccess.CreateNewClient(surnameTextBox.Text, nameTextBox.Text, gender, managerId);
 
             if (clientId == -1)
             {
@@ -37,7 +41,9 @@ namespace ClientManagerForms
                 Name = surnameTextBox.Text,
                 SurName = nameTextBox.Text,
                 Gender = gender,
-                Id = clientId
+                Id = clientId,
+                // TODO - AccountsId
+                AccountsId = -1,
             });
         }
     }

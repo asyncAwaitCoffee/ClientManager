@@ -1,5 +1,5 @@
+using ClientManagerLibrary;
 using ClientManagerLibrary.DataAccess;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ClientManagerForms
 {
@@ -16,6 +16,9 @@ namespace ClientManagerForms
             {
                 loginTextBox.Text = "";
                 passwordTextBox.Text = "";
+
+                // TODO - init manager with actual data
+                Manager.Instance();
 
                 Form clientsForm = new ClientsForm();
                 clientsForm.ShowDialog();
