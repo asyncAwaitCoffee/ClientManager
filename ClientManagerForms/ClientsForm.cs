@@ -1,4 +1,5 @@
-﻿using ClientManagerLibrary.DataAccess;
+﻿using ClientManagerLibrary;
+using ClientManagerLibrary.DataAccess;
 using ClientManagerLibrary.Models;
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,9 @@ namespace ClientManagerForms
 
         private async void LoadClients()
         {
-            int counter = 0;
-            // TODO - managerId
-            _clients = await DataAccess.GetUserClients(1);
+            //int counter = 0;
+
+            _clients = await DataAccess.GetUserClients(Manager.Instance().UserId);
             //foreach (Client client in clients)
             //{
             //    counter++;

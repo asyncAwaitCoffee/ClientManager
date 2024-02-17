@@ -7,15 +7,22 @@ using System.Threading.Tasks;
 
 namespace ClientManagerLibrary
 {
-    public sealed class Manager : User
+    public sealed class Manager
     {
         private static Manager? _currentManager = null;
         private static object _lock = new();
 
-        private Manager(int id, string name, string surname)
-            :base(id, name, surname)
-        {
+        private int _userId;
 
+        public int UserId
+        {
+            get { return _userId; }
+            set { if (_userId == 0) _userId = value; }
+        }
+
+
+        private Manager()
+        {
         }
 
         public static Manager Instance()
@@ -26,8 +33,7 @@ namespace ClientManagerLibrary
                 {
                     if (_currentManager is null)
                     {
-                        // TODO - manager actual data
-                        _currentManager = new Manager(1, "aaa", "bbb");
+                        _currentManager = new Manager();
                     }
                 }
             }

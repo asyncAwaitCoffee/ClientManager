@@ -25,9 +25,10 @@ namespace ClientManagerForms
 
         private async void createClientButton_Click(object sender, EventArgs e)
         {
+            // TODO - validate input data
             int gender = int.Parse((string)genderPanel.Controls.OfType<RadioButton>().First(r => r.Checked).Tag);
-            // TODO - managerId
-            int managerId = Manager.Instance().Id;
+            
+            int managerId = Manager.Instance().UserId;
 
             int clientId = await DataAccess.CreateNewClient(surnameTextBox.Text, nameTextBox.Text, gender, managerId);
 
