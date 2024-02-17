@@ -143,6 +143,7 @@
             Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(6);
             Name = "ClientNewForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "New Client";
             genderPanel.ResumeLayout(false);
             genderPanel.PerformLayout();

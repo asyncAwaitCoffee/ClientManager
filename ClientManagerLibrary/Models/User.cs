@@ -13,16 +13,5 @@ namespace ClientManagerLibrary.Models
         public string UserName { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-
-        public User(int id, string name, string surname)
-        {
-            Id = id;
-            Name = name;
-            Surname = surname;
-        }
-        public User(int id, string username)
-        {
-            UserName = username;
-        }
     }
 }

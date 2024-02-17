@@ -95,7 +95,7 @@ namespace ClientManagerLibrary.DataAccess
             }
         }
 
-        public static async Task<bool> TryUserLogin(string username, string password)
+        public static async Task<int?> TryUserLogin(string username, string password)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -103,7 +103,7 @@ namespace ClientManagerLibrary.DataAccess
                 data = System.Security.Cryptography.SHA256.HashData(data);
                 string cryptPassword = Encoding.UTF8.GetString(data);
 
-                string command = "SELECT 1 FROM CLIENT_MANAGER.USERS WHERE USER_LOGIN = @username AND ENCRYPTED_PASSWORD = @cryptPassword";
+                string command = "SELECT ID FROM CLIENT_MANAGER.USERS WHERE USER_LOGIN = @username AND ENCRYPTED_PASSWORD = @cryptPassword";
 
                 await connection.OpenAsync();
                 SqlCommand sqlCommand = connection.CreateCommand();
@@ -121,7 +121,7 @@ namespace ClientManagerLibrary.DataAccess
 
                 int? result = (int?)await sqlCommand.ExecuteScalarAsync();
 
-                return result is not null;
+                return result;
 
             }
         }
@@ -165,7 +165,11 @@ namespace ClientManagerLibrary.DataAccess
                 while (await result.ReadAsync())
                 {
                     users.Add(
-                            new User(result.GetInt32("ID"), result.GetString("USER_LOGIN"))
+                            new User()
+                            {
+                                Id = result.GetInt32("ID"),
+                                UserName = result.GetString("USER_LOGIN")
+                            }
                         );
                 }
             }

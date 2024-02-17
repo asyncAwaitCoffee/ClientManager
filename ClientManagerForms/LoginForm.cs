@@ -12,17 +12,27 @@ namespace ClientManagerForms
 
         private async void loginButton_Click(object sender, EventArgs e)
         {
-            if (loginTextBox.Text.Length > 0 && await DataAccess.TryUserLogin(loginTextBox.Text, passwordTextBox.Text))
+            if (loginTextBox.Text.Length < 3)
             {
-                loginTextBox.Text = "";
-                passwordTextBox.Text = "";
-
-                // TODO - init manager with actual data
-                Manager.Instance();
-
-                Form clientsForm = new ClientsForm();
-                clientsForm.ShowDialog();
+                return;
             }
+
+            int? userId = await DataAccess.TryUserLogin(loginTextBox.Text, passwordTextBox.Text);
+            
+            if (userId == null)
+            {
+                return;
+            }            
+            
+            loginTextBox.Text = "";
+            passwordTextBox.Text = "";
+
+            Manager manager = Manager.Instance();
+            manager.UserId = (int)userId;
+
+            Form clientsForm = new ClientsForm();
+            clientsForm.ShowDialog();
+            
         }
 
         private async void registerButton_Click(object sender, EventArgs e)
