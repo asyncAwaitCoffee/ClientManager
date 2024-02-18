@@ -25,6 +25,9 @@ namespace ClientManagerForms
             InitializeComponent();
 
             LoadData();
+
+            clientSurnameTextBox.TextChanged += clientSurnameTextBox_TextChanged;
+            clientFullNameTextBox.TextChanged += clientFullNameTextBox_TextChanged;
         }
 
         private async void LoadData()
@@ -44,7 +47,7 @@ namespace ClientManagerForms
 
             Account? account = clientAccountsIdscomboBox.SelectedItem as Account;
 
-            balanceTextBox.Text = $"{ account?.Balance }";
+            balanceTextBox.Text = $"{account?.Balance}";
         }
 
         private async void saveClientButton_Click(object sender, EventArgs e)
@@ -62,6 +65,7 @@ namespace ClientManagerForms
             ClientRow.Cells[2].Value = clientFullNameTextBox.Text;
 
             MessageBox.Show("Data successfuly saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Close();
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -74,7 +78,17 @@ namespace ClientManagerForms
             ComboBox comboBox = sender as ComboBox;
             Account account = comboBox.SelectedItem as Account;
 
-            balanceTextBox.Text = $"{ account.Balance }";
+            balanceTextBox.Text = $"{account.Balance}";
+        }
+
+        private void clientSurnameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            saveClientButton.Enabled = true;
+        }
+
+        private void clientFullNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            saveClientButton.Enabled = true;
         }
     }
 }

@@ -34,12 +34,15 @@
             cancelButton = new Button();
             clientSurnameTextBox = new TextBox();
             balanceTextBox = new TextBox();
+            newClientLabel = new Label();
+            accountLabel = new Label();
             SuspendLayout();
             // 
             // clientFullNameTextBox
             // 
-            clientFullNameTextBox.Location = new Point(42, 100);
+            clientFullNameTextBox.Location = new Point(36, 142);
             clientFullNameTextBox.Name = "clientFullNameTextBox";
+            clientFullNameTextBox.PlaceholderText = "Name";
             clientFullNameTextBox.Size = new Size(386, 50);
             clientFullNameTextBox.TabIndex = 0;
             // 
@@ -47,7 +50,7 @@
             // 
             clientAccountsIdscomboBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
             clientAccountsIdscomboBox.FormattingEnabled = true;
-            clientAccountsIdscomboBox.Location = new Point(42, 170);
+            clientAccountsIdscomboBox.Location = new Point(36, 242);
             clientAccountsIdscomboBox.Name = "clientAccountsIdscomboBox";
             clientAccountsIdscomboBox.Size = new Size(220, 40);
             clientAccountsIdscomboBox.TabIndex = 1;
@@ -55,7 +58,8 @@
             // 
             // saveClientButton
             // 
-            saveClientButton.Location = new Point(42, 320);
+            saveClientButton.Enabled = false;
+            saveClientButton.Location = new Point(36, 326);
             saveClientButton.Name = "saveClientButton";
             saveClientButton.Size = new Size(147, 69);
             saveClientButton.TabIndex = 2;
@@ -65,7 +69,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(281, 320);
+            cancelButton.Location = new Point(275, 326);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(147, 69);
             cancelButton.TabIndex = 3;
@@ -75,19 +79,39 @@
             // 
             // clientSurnameTextBox
             // 
-            clientSurnameTextBox.Location = new Point(42, 33);
+            clientSurnameTextBox.Location = new Point(36, 75);
             clientSurnameTextBox.Name = "clientSurnameTextBox";
+            clientSurnameTextBox.PlaceholderText = "Surname";
             clientSurnameTextBox.Size = new Size(386, 50);
             clientSurnameTextBox.TabIndex = 4;
             // 
             // balanceTextBox
             // 
             balanceTextBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            balanceTextBox.Location = new Point(281, 170);
+            balanceTextBox.Location = new Point(275, 242);
             balanceTextBox.Name = "balanceTextBox";
             balanceTextBox.ReadOnly = true;
             balanceTextBox.Size = new Size(147, 39);
             balanceTextBox.TabIndex = 5;
+            // 
+            // newClientLabel
+            // 
+            newClientLabel.AutoSize = true;
+            newClientLabel.Location = new Point(12, 9);
+            newClientLabel.Name = "newClientLabel";
+            newClientLabel.Size = new Size(173, 45);
+            newClientLabel.TabIndex = 6;
+            newClientLabel.Text = "Client info:";
+            // 
+            // accountLabel
+            // 
+            accountLabel.AutoSize = true;
+            accountLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            accountLabel.Location = new Point(36, 207);
+            accountLabel.Name = "accountLabel";
+            accountLabel.Size = new Size(116, 32);
+            accountLabel.TabIndex = 7;
+            accountLabel.Text = "Accounts:";
             // 
             // ClientEditForm
             // 
@@ -95,6 +119,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(471, 433);
+            Controls.Add(accountLabel);
+            Controls.Add(newClientLabel);
             Controls.Add(balanceTextBox);
             Controls.Add(clientSurnameTextBox);
             Controls.Add(cancelButton);
@@ -118,5 +144,7 @@
         private Button cancelButton;
         private TextBox clientSurnameTextBox;
         private TextBox balanceTextBox;
+        private Label newClientLabel;
+        private Label accountLabel;
     }
 }

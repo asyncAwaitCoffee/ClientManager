@@ -26,8 +26,8 @@ namespace ClientManagerForms
         private async void LoadClients()
         {
             //int counter = 0;
-
-            _clients = await DataAccess.GetUserClients(Manager.Instance().UserId);
+            // TODO - page number
+            _clients = await DataAccess.GetUserClients(Manager.Instance().UserId, 1);
             //foreach (Client client in clients)
             //{
             //    counter++;
