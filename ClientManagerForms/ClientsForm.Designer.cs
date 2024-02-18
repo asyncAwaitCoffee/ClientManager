@@ -161,7 +161,7 @@
             // managersToolStripMenuItem
             // 
             managersToolStripMenuItem.Name = "managersToolStripMenuItem";
-            managersToolStripMenuItem.Size = new Size(180, 22);
+            managersToolStripMenuItem.Size = new Size(126, 22);
             managersToolStripMenuItem.Text = "Managers";
             managersToolStripMenuItem.Click += managersToolStripMenuItem_Click;
             // 

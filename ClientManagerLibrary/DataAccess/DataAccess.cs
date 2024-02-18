@@ -165,9 +165,9 @@ namespace ClientManagerLibrary.DataAccess
         /// For console tests only
         /// </summary>
         /// <returns>All users</returns>
-        public static async Task<BindingList<User>> GetAllUsers()
+        public static async Task<List<User>> GetAllUsers()
         {
-            BindingList<User> users = new BindingList<User>();
+            List<User> users = new List<User>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
