@@ -37,6 +37,7 @@
             registerButton = new Button();
             loginInfoLabel = new Label();
             errorProvider1 = new ErrorProvider(components);
+            logoutButton = new Button();
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
@@ -110,12 +111,24 @@
             // 
             errorProvider1.ContainerControl = this;
             // 
+            // logoutButton
+            // 
+            logoutButton.Location = new Point(158, 369);
+            logoutButton.Name = "logoutButton";
+            logoutButton.Size = new Size(176, 61);
+            logoutButton.TabIndex = 7;
+            logoutButton.Text = "Log Out";
+            logoutButton.UseVisualStyleBackColor = true;
+            logoutButton.Visible = false;
+            logoutButton.Click += logoutButton_Click;
+            // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(18F, 45F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(493, 504);
+            Controls.Add(logoutButton);
             Controls.Add(loginInfoLabel);
             Controls.Add(registerButton);
             Controls.Add(loginButton);
@@ -149,5 +162,6 @@
         private Button registerButton;
         private Label loginInfoLabel;
         private ErrorProvider errorProvider1;
+        private Button logoutButton;
     }
 }
