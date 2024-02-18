@@ -25,6 +25,7 @@ namespace ClientManagerForms
             if (Manager.Instance().PermissionsLevel > 1)
             {
                 createMenuSubItemManager.Visible = true;
+                permissionsToolStripMenuItem.Visible = true;
             }
 
             LoadClients();
@@ -128,7 +129,7 @@ namespace ClientManagerForms
         {
             _currentPageNo--;
             var nextClients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo, _itemsPerPage);
-            
+
             nextPageNoButton.Enabled = true;
 
             if (_currentPageNo < 2)
@@ -142,6 +143,12 @@ namespace ClientManagerForms
             {
                 _clients.Add(client);
             }
+        }
+
+        private void managersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UsersForm form = new UsersForm();
+            form.ShowDialog();
         }
     }
 }

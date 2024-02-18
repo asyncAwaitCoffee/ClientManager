@@ -43,6 +43,8 @@
             transactionsMenuItem = new ToolStripMenuItem();
             transactionsMenuItemNew = new ToolStripMenuItem();
             transactionsMenuItemStatus = new ToolStripMenuItem();
+            permissionsToolStripMenuItem = new ToolStripMenuItem();
+            managersToolStripMenuItem = new ToolStripMenuItem();
             nextPageNoButton = new Button();
             previousPageNoButton = new Button();
             ((System.ComponentModel.ISupportInitialize)clientsDataGridView).BeginInit();
@@ -95,7 +97,7 @@
             // 
             // menuStrip1
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { createMenuItem, transactionsMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { createMenuItem, transactionsMenuItem, permissionsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.Size = new Size(955, 24);
@@ -147,6 +149,21 @@
             transactionsMenuItemStatus.Name = "transactionsMenuItemStatus";
             transactionsMenuItemStatus.Size = new Size(106, 22);
             transactionsMenuItemStatus.Text = "Status";
+            // 
+            // permissionsToolStripMenuItem
+            // 
+            permissionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { managersToolStripMenuItem });
+            permissionsToolStripMenuItem.Name = "permissionsToolStripMenuItem";
+            permissionsToolStripMenuItem.Size = new Size(82, 20);
+            permissionsToolStripMenuItem.Text = "Permissions";
+            permissionsToolStripMenuItem.Visible = false;
+            // 
+            // managersToolStripMenuItem
+            // 
+            managersToolStripMenuItem.Name = "managersToolStripMenuItem";
+            managersToolStripMenuItem.Size = new Size(180, 22);
+            managersToolStripMenuItem.Text = "Managers";
+            managersToolStripMenuItem.Click += managersToolStripMenuItem_Click;
             // 
             // nextPageNoButton
             // 
@@ -214,5 +231,7 @@
         private ToolStripMenuItem transactionsMenuItemStatus;
         private Button nextPageNoButton;
         private Button previousPageNoButton;
+        private ToolStripMenuItem permissionsToolStripMenuItem;
+        private ToolStripMenuItem managersToolStripMenuItem;
     }
 }

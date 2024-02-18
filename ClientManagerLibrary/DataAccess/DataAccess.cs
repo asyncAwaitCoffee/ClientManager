@@ -165,20 +165,20 @@ namespace ClientManagerLibrary.DataAccess
         /// For console tests only
         /// </summary>
         /// <returns>All users</returns>
-        public static async Task<List<User>> GetAllUsers()
+        public static async Task<BindingList<User>> GetAllUsers()
         {
-            List<User> users = new List<User>();
+            BindingList<User> users = new BindingList<User>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
-                string command = "SELECT * FROM CLIENT_MANAGER.USERS";
+                string command = "CLIENT_MANAGER.GET_ALL_USERS";
 
                 await connection.OpenAsync();
                 SqlCommand sqlCommand = connection.CreateCommand();
 
                 sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
 
@@ -187,8 +187,8 @@ namespace ClientManagerLibrary.DataAccess
                     users.Add(
                             new User()
                             {
-                                Id = result.GetInt32("ID"),
-                                UserName = result.GetString("USER_LOGIN")
+                                UserName = result.GetString("USER_LOGIN"),
+                                PermissionLevel = (int)result.GetByte("PERMISSIONS_LEVEL")
                             }
                         );
                 }
