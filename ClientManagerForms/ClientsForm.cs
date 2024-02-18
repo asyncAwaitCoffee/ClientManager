@@ -17,6 +17,7 @@ namespace ClientManagerForms
     {
         private BindingList<Client> _clients;
         private int _currentPageNo = 1;
+        private int _itemsPerPage = 20;
         public ClientsForm()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace ClientManagerForms
         private async void LoadClients()
         {
             // TODO - page number
-            _clients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo);
+            _clients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo, _itemsPerPage);
             //int counter = 0;
             //foreach (Client client in clients)
             //{
@@ -94,15 +95,43 @@ namespace ClientManagerForms
         private async void nextPageNoButton_Click(object sender, EventArgs e)
         {
             _currentPageNo++;
-            var nextClients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo);
-            // TODO - cache previous results
+
+            previousPageNoButton.Enabled = true;
+
+            var nextClients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo, _itemsPerPage);
+
+            if (nextClients.Count() < _itemsPerPage)
+            {
+                nextPageNoButton.Enabled = false;
+            }
+            // TODO - cache previous results + refresh
             _clients.Clear();
 
             foreach (var client in nextClients)
             {
                 _clients.Add(client);
-            }            
+            }
 
+        }
+
+        private async void previousPageNoButton_Click(object sender, EventArgs e)
+        {
+            _currentPageNo--;
+            var nextClients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo, _itemsPerPage);
+            
+            nextPageNoButton.Enabled = true;
+
+            if (_currentPageNo < 2)
+            {
+                previousPageNoButton.Enabled = false;
+            }
+            // TODO - cache previous results + refresh
+            _clients.Clear();
+
+            foreach (var client in nextClients)
+            {
+                _clients.Add(client);
+            }
         }
     }
 }
