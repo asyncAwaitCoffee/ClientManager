@@ -19,14 +19,18 @@ namespace ClientManagerForms
             }
 
             (int? userId, int? permissionsLevel) = await DataAccess.TryUserLogin(loginTextBox.Text, passwordTextBox.Text);
-            
+
             if (userId == null || permissionsLevel == null)
             {
                 return;
-            }            
-            
+            }
+
             loginTextBox.Text = "";
             passwordTextBox.Text = "";
+
+            logoutButton.Visible = true;
+            loginButton.Visible = false;
+            registerButton.Visible = false;
 
             Manager manager = Manager.Instance();
             manager.UserId = (int)userId;
@@ -34,7 +38,7 @@ namespace ClientManagerForms
 
             Form clientsForm = new ClientsForm();
             clientsForm.ShowDialog();
-            
+
         }
 
         private async void registerButton_Click(object sender, EventArgs e)
@@ -55,7 +59,7 @@ namespace ClientManagerForms
                 loginInfoLabel.ForeColor = Color.Red;
                 loginInfoLabel.Text = "Err, oh no!";
             }
-            
+
         }
 
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)
@@ -65,6 +69,15 @@ namespace ClientManagerForms
             {
                 this.Close();
             }
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            Manager.Instance().Logout();
+
+            logoutButton.Visible = false;
+            loginButton.Visible = true;
+            registerButton.Visible = true;
         }
     }
 }

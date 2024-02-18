@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientsForm));
             clientsDataGridView = new DataGridView();
             clientsFormNotifyIcon = new NotifyIcon(components);
@@ -76,6 +77,8 @@
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
             clientsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = SystemColors.Control;
+            clientsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             clientsDataGridView.RowTemplate.Height = 50;
             clientsDataGridView.Size = new Size(934, 454);
             clientsDataGridView.TabIndex = 1;
@@ -111,20 +114,20 @@
             // createMenuSubItemClient
             // 
             createMenuSubItemClient.Name = "createMenuSubItemClient";
-            createMenuSubItemClient.Size = new Size(180, 22);
+            createMenuSubItemClient.Size = new Size(121, 22);
             createMenuSubItemClient.Text = "Client";
             createMenuSubItemClient.Click += createMenuSubItemClient_Click;
             // 
             // createMenuSubItemAccount
             // 
             createMenuSubItemAccount.Name = "createMenuSubItemAccount";
-            createMenuSubItemAccount.Size = new Size(180, 22);
+            createMenuSubItemAccount.Size = new Size(121, 22);
             createMenuSubItemAccount.Text = "Account";
             // 
             // createMenuSubItemManager
             // 
             createMenuSubItemManager.Name = "createMenuSubItemManager";
-            createMenuSubItemManager.Size = new Size(180, 22);
+            createMenuSubItemManager.Size = new Size(121, 22);
             createMenuSubItemManager.Text = "Manager";
             createMenuSubItemManager.Visible = false;
             // 
@@ -150,7 +153,7 @@
             // nextPageNoButton
             // 
             nextPageNoButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            nextPageNoButton.Location = new Point(439, 517);
+            nextPageNoButton.Location = new Point(488, 517);
             nextPageNoButton.Name = "nextPageNoButton";
             nextPageNoButton.Size = new Size(101, 43);
             nextPageNoButton.TabIndex = 3;
@@ -162,7 +165,7 @@
             // 
             previousPageNoButton.Enabled = false;
             previousPageNoButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            previousPageNoButton.Location = new Point(317, 517);
+            previousPageNoButton.Location = new Point(366, 517);
             previousPageNoButton.Name = "previousPageNoButton";
             previousPageNoButton.Size = new Size(101, 43);
             previousPageNoButton.TabIndex = 4;

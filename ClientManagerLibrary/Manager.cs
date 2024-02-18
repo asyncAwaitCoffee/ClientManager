@@ -46,5 +46,11 @@ namespace ClientManagerLibrary
             }
             return _currentManager;
         }
+
+        public void Logout()
+        {
+            _userId = 0;
+            _permissionsLevel = 0;
+        }
     }
 }
