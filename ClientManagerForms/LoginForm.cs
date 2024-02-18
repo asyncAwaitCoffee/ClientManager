@@ -5,6 +5,7 @@ namespace ClientManagerForms
 {
     public partial class LoginForm : Form
     {
+        // TODO - logout
         public LoginForm()
         {
             InitializeComponent();
@@ -17,9 +18,9 @@ namespace ClientManagerForms
                 return;
             }
 
-            int? userId = await DataAccess.TryUserLogin(loginTextBox.Text, passwordTextBox.Text);
+            (int? userId, int? permissionsLevel) = await DataAccess.TryUserLogin(loginTextBox.Text, passwordTextBox.Text);
             
-            if (userId == null)
+            if (userId == null || permissionsLevel == null)
             {
                 return;
             }            
@@ -29,6 +30,7 @@ namespace ClientManagerForms
 
             Manager manager = Manager.Instance();
             manager.UserId = (int)userId;
+            manager.PermissionsLevel = (int)permissionsLevel;
 
             Form clientsForm = new ClientsForm();
             clientsForm.ShowDialog();

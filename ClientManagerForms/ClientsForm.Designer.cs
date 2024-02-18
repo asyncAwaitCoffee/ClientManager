@@ -111,21 +111,22 @@
             // createMenuSubItemClient
             // 
             createMenuSubItemClient.Name = "createMenuSubItemClient";
-            createMenuSubItemClient.Size = new Size(121, 22);
+            createMenuSubItemClient.Size = new Size(180, 22);
             createMenuSubItemClient.Text = "Client";
             createMenuSubItemClient.Click += createMenuSubItemClient_Click;
             // 
             // createMenuSubItemAccount
             // 
             createMenuSubItemAccount.Name = "createMenuSubItemAccount";
-            createMenuSubItemAccount.Size = new Size(121, 22);
+            createMenuSubItemAccount.Size = new Size(180, 22);
             createMenuSubItemAccount.Text = "Account";
             // 
             // createMenuSubItemManager
             // 
             createMenuSubItemManager.Name = "createMenuSubItemManager";
-            createMenuSubItemManager.Size = new Size(121, 22);
+            createMenuSubItemManager.Size = new Size(180, 22);
             createMenuSubItemManager.Text = "Manager";
+            createMenuSubItemManager.Visible = false;
             // 
             // transactionsMenuItem
             // 

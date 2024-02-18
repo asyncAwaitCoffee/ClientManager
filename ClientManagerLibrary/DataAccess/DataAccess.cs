@@ -95,7 +95,7 @@ namespace ClientManagerLibrary.DataAccess
             }
         }
 
-        public static async Task<int?> TryUserLogin(string username, string password)
+        public static async Task<(int?, int?)> TryUserLogin(string username, string password)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -103,25 +103,41 @@ namespace ClientManagerLibrary.DataAccess
                 data = System.Security.Cryptography.SHA256.HashData(data);
                 string cryptPassword = Encoding.UTF8.GetString(data);
 
-                string command = "SELECT ID FROM CLIENT_MANAGER.USERS WHERE USER_LOGIN = @username AND ENCRYPTED_PASSWORD = @cryptPassword";
+                string command = "CLIENT_MANAGER.USER_AUTHORIZATION";
 
                 await connection.OpenAsync();
                 SqlCommand sqlCommand = connection.CreateCommand();
-
+                
                 SqlParameter[] parameters =
                 {
-                    new SqlParameter("@username", username),
-                    new SqlParameter("@cryptPassword", cryptPassword)
+                    new SqlParameter("@USERNAME", username),
+                    new SqlParameter("@CRYPTPASSWORD", cryptPassword),
+                    new SqlParameter
+                    {
+                        ParameterName = "@USER_ID",
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Output
+                    },
+                    new SqlParameter
+                    {
+                        ParameterName = "@PERMISSIONS_LEVEL",
+                        SqlDbType = SqlDbType.Int,
+                        Direction = ParameterDirection.Output
+                    },
                 };
 
                 sqlCommand.Parameters.AddRange(parameters);
 
                 sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.Text;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                int? result = (int?)await sqlCommand.ExecuteScalarAsync();
+                await sqlCommand.ExecuteNonQueryAsync();
 
-                return result;
+                // TODO - try/catch for all sql
+                int userId = (int)sqlCommand.Parameters["@USER_ID"].Value;
+                int permissionsLevel = (int)sqlCommand.Parameters["@PERMISSIONS_LEVEL"].Value;
+
+                return (userId, permissionsLevel);
 
             }
         }
