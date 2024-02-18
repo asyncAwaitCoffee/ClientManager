@@ -133,11 +133,15 @@ namespace ClientManagerLibrary.DataAccess
 
                 await sqlCommand.ExecuteNonQueryAsync();
 
-                // TODO - try/catch for all sql
-                int userId = (int)sqlCommand.Parameters["@USER_ID"].Value;
-                int permissionsLevel = (int)sqlCommand.Parameters["@PERMISSIONS_LEVEL"].Value;
+                if (sqlCommand.Parameters["@USER_ID"].SqlDbType == SqlDbType.Int && sqlCommand.Parameters["@PERMISSIONS_LEVEL"].SqlDbType == SqlDbType.Int)
+                {
+                    int userId = (int)sqlCommand.Parameters["@USER_ID"].Value;
+                    int permissionsLevel = (int)sqlCommand.Parameters["@PERMISSIONS_LEVEL"].Value;
+                    return (userId, permissionsLevel);
+                }
+                
 
-                return (userId, permissionsLevel);
+                return (null, null);
 
             }
         }

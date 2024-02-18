@@ -33,7 +33,6 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientsForm));
             clientsDataGridView = new DataGridView();
             clientsFormNotifyIcon = new NotifyIcon(components);
             menuStrip1 = new MenuStrip();
@@ -89,7 +88,6 @@
             clientsFormNotifyIcon.BalloonTipIcon = ToolTipIcon.Info;
             clientsFormNotifyIcon.BalloonTipText = "Click to expand window";
             clientsFormNotifyIcon.BalloonTipTitle = "Clients Manager";
-            clientsFormNotifyIcon.Icon = (Icon)resources.GetObject("clientsFormNotifyIcon.Icon");
             clientsFormNotifyIcon.Text = "Clients Manager";
             clientsFormNotifyIcon.Visible = true;
             clientsFormNotifyIcon.BalloonTipClicked += clientsFormNotifyIcon_BalloonTipClicked;
@@ -188,7 +186,6 @@
             MainMenuStrip = menuStrip1;
             Margin = new Padding(7);
             Name = "ClientsForm";
-            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ClientsForm";
             SizeChanged += ClientsForm_SizeChanged;

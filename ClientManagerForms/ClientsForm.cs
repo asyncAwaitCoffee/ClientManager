@@ -77,18 +77,23 @@ namespace ClientManagerForms
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
-                clientsFormNotifyIcon.ShowBalloonTip(5);
+                clientsFormNotifyIcon.Icon = SystemIcons.Information;
+                clientsFormNotifyIcon.ShowBalloonTip(1);
             }
         }
 
         private void clientsFormNotifyIcon_BalloonTipClicked(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+            //MessageBox.Show("Balloon");
+            clientsFormNotifyIcon.Icon = null;
         }
 
         private void clientsFormNotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+            //MessageBox.Show("NotifyIcon");
+            clientsFormNotifyIcon.Icon = null;
         }
 
         private void createMenuSubItemClient_Click(object sender, EventArgs e)
