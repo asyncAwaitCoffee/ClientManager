@@ -44,6 +44,7 @@
             transactionsMenuItemNew = new ToolStripMenuItem();
             transactionsMenuItemStatus = new ToolStripMenuItem();
             nextPageNoButton = new Button();
+            previousPageNoButton = new Button();
             ((System.ComponentModel.ISupportInitialize)clientsDataGridView).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -148,7 +149,7 @@
             // nextPageNoButton
             // 
             nextPageNoButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            nextPageNoButton.Location = new Point(440, 525);
+            nextPageNoButton.Location = new Point(439, 517);
             nextPageNoButton.Name = "nextPageNoButton";
             nextPageNoButton.Size = new Size(101, 43);
             nextPageNoButton.TabIndex = 3;
@@ -156,12 +157,25 @@
             nextPageNoButton.UseVisualStyleBackColor = true;
             nextPageNoButton.Click += nextPageNoButton_Click;
             // 
+            // previousPageNoButton
+            // 
+            previousPageNoButton.Enabled = false;
+            previousPageNoButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            previousPageNoButton.Location = new Point(317, 517);
+            previousPageNoButton.Name = "previousPageNoButton";
+            previousPageNoButton.Size = new Size(101, 43);
+            previousPageNoButton.TabIndex = 4;
+            previousPageNoButton.Text = "Prev";
+            previousPageNoButton.UseVisualStyleBackColor = true;
+            previousPageNoButton.Click += previousPageNoButton_Click;
+            // 
             // ClientsForm
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(955, 580);
+            Controls.Add(previousPageNoButton);
             Controls.Add(nextPageNoButton);
             Controls.Add(clientsDataGridView);
             Controls.Add(menuStrip1);
@@ -198,5 +212,6 @@
         private ToolStripMenuItem transactionsMenuItemNew;
         private ToolStripMenuItem transactionsMenuItemStatus;
         private Button nextPageNoButton;
+        private Button previousPageNoButton;
     }
 }

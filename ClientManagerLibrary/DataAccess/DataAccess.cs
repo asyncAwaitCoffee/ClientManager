@@ -178,7 +178,7 @@ namespace ClientManagerLibrary.DataAccess
 
         }
 
-        public static async Task<BindingList<Client>> GetUserClients(int userId, int pageNo)
+        public static async Task<BindingList<Client>> GetUserClients(int userId, int pageNo, int itemsPerPage)
         {
             BindingList<Client> clients = new BindingList<Client>();
 
@@ -194,6 +194,7 @@ namespace ClientManagerLibrary.DataAccess
                 {
                     new SqlParameter("@USER_ID", userId),
                     new SqlParameter("@PAGE_NO", pageNo),
+                    new SqlParameter("@ITEMS_PER_PAGE", itemsPerPage),
                 };
 
                 sqlCommand.Parameters.AddRange(parameters);
