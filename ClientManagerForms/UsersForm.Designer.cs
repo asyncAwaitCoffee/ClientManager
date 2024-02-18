@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             usersDataGridView = new DataGridView();
+            userNameColumn = new DataGridViewTextBoxColumn();
             permissionsColumn = new DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)usersDataGridView).BeginInit();
             SuspendLayout();
@@ -36,15 +37,21 @@
             // usersDataGridView
             // 
             usersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            usersDataGridView.Columns.AddRange(new DataGridViewColumn[] { permissionsColumn });
+            usersDataGridView.Columns.AddRange(new DataGridViewColumn[] { userNameColumn, permissionsColumn });
             usersDataGridView.Location = new Point(12, 60);
             usersDataGridView.Name = "usersDataGridView";
             usersDataGridView.Size = new Size(527, 324);
             usersDataGridView.TabIndex = 0;
             // 
+            // userNameColumn
+            // 
+            userNameColumn.HeaderText = "User";
+            userNameColumn.Name = "userNameColumn";
+            // 
             // permissionsColumn
             // 
             permissionsColumn.HeaderText = "Permissions";
+            permissionsColumn.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" });
             permissionsColumn.Name = "permissionsColumn";
             // 
             // UsersForm
@@ -65,6 +72,7 @@
         #endregion
 
         private DataGridView usersDataGridView;
+        private DataGridViewTextBoxColumn userNameColumn;
         private DataGridViewComboBoxColumn permissionsColumn;
     }
 }

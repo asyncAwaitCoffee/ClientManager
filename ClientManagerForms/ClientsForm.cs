@@ -35,30 +35,7 @@ namespace ClientManagerForms
         {
             // TODO - page number
             _clients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo, _itemsPerPage);
-            //int counter = 0;
-            //foreach (Client client in clients)
-            //{
-            //    counter++;
-
-            //    var row = new DataGridViewRow();
-            //    row.Height = 50;
-            //    row.CreateCells(clientsDataGridView);
-
-            //    row.Cells[0].Value = client.Id;
-            //    row.Cells[1].Value = client.SurName;
-            //    row.Cells[2].Value = client.FullName;
-
-            //    row.Cells[4].Value = true;
-
-            //    if (counter % 2 == 0)
-            //    {
-            //        row.DefaultCellStyle.BackColor = Color.LightGray;
-            //    }
-
-            //    clientsDataGridView.Rows.Add(row);
-
-            //}
-
+            
             clientsDataGridView.DataSource = _clients;
 
             clientsDataGridView.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

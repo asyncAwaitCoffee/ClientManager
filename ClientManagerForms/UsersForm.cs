@@ -14,7 +14,7 @@ namespace ClientManagerForms
 {
     public partial class UsersForm : Form
     {
-        BindingList<User> _users;
+        List<User> _users;
         public UsersForm()
         {
             InitializeComponent();
@@ -26,7 +26,19 @@ namespace ClientManagerForms
         {
             _users = await DataAccess.GetAllUsers();
 
-            usersDataGridView.DataSource = _users;
+            foreach (User user in _users)
+            {
+                var row = new DataGridViewRow();
+                row.Height = 50;
+                row.CreateCells(usersDataGridView);
+
+                row.Cells[0].Value = user.UserName;
+                
+                //row.Cells[1] = user.PermissionLevel;
+
+                usersDataGridView.Rows.Add(row);
+
+            }
         }
     }
 }
