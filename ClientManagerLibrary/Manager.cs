@@ -12,9 +12,9 @@ namespace ClientManagerLibrary
         private static Manager? _currentManager = null;
         private static object _lock = new();
 
-        // TODO - remove defaults to 1 for tests
+        // TODO - remove defaults for tests
         private int _userId;
-        private int _permissionsLevel;
+        private int _permissionsLevel = 2;
         
         public int UserId
         {
