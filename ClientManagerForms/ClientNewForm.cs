@@ -46,6 +46,8 @@ namespace ClientManagerForms
                 // TODO - AccountsId
                 AccountsId = -1,
             });
+
+            this.Close();
         }
     }
 }

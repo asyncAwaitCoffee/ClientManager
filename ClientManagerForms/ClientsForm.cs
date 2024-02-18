@@ -22,6 +22,11 @@ namespace ClientManagerForms
         {
             InitializeComponent();
 
+            if (Manager.Instance().PermissionsLevel > 1)
+            {
+                createMenuSubItemManager.Visible = true;
+            }
+
             LoadClients();
         }
 
