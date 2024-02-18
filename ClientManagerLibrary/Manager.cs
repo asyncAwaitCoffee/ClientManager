@@ -12,7 +12,8 @@ namespace ClientManagerLibrary
         private static Manager? _currentManager = null;
         private static object _lock = new();
 
-        private int _userId;
+        // TODO - defaults to 1 for tests
+        private int _userId = 1;
 
         public int UserId
         {

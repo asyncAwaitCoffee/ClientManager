@@ -63,7 +63,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             clientsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            clientsDataGridView.Location = new Point(10, 115);
+            clientsDataGridView.Location = new Point(10, 87);
             clientsDataGridView.Margin = new Padding(2);
             clientsDataGridView.Name = "clientsDataGridView";
             clientsDataGridView.ReadOnly = true;
