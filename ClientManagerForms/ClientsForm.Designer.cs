@@ -43,6 +43,7 @@
             transactionsMenuItem = new ToolStripMenuItem();
             transactionsMenuItemNew = new ToolStripMenuItem();
             transactionsMenuItemStatus = new ToolStripMenuItem();
+            nextPageNoButton = new Button();
             ((System.ComponentModel.ISupportInitialize)clientsDataGridView).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -63,7 +64,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             clientsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            clientsDataGridView.Location = new Point(10, 87);
+            clientsDataGridView.Location = new Point(10, 41);
             clientsDataGridView.Margin = new Padding(2);
             clientsDataGridView.Name = "clientsDataGridView";
             clientsDataGridView.ReadOnly = true;
@@ -144,12 +145,24 @@
             transactionsMenuItemStatus.Size = new Size(106, 22);
             transactionsMenuItemStatus.Text = "Status";
             // 
+            // nextPageNoButton
+            // 
+            nextPageNoButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            nextPageNoButton.Location = new Point(440, 525);
+            nextPageNoButton.Name = "nextPageNoButton";
+            nextPageNoButton.Size = new Size(101, 43);
+            nextPageNoButton.TabIndex = 3;
+            nextPageNoButton.Text = "Next";
+            nextPageNoButton.UseVisualStyleBackColor = true;
+            nextPageNoButton.Click += nextPageNoButton_Click;
+            // 
             // ClientsForm
             // 
             AutoScaleDimensions = new SizeF(15F, 37F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(955, 580);
+            Controls.Add(nextPageNoButton);
             Controls.Add(clientsDataGridView);
             Controls.Add(menuStrip1);
             Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -184,5 +197,6 @@
         private ToolStripMenuItem transactionsMenuItem;
         private ToolStripMenuItem transactionsMenuItemNew;
         private ToolStripMenuItem transactionsMenuItemStatus;
+        private Button nextPageNoButton;
     }
 }

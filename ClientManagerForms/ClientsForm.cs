@@ -16,6 +16,7 @@ namespace ClientManagerForms
     public partial class ClientsForm : Form
     {
         private BindingList<Client> _clients;
+        private int _currentPageNo = 1;
         public ClientsForm()
         {
             InitializeComponent();
@@ -25,9 +26,9 @@ namespace ClientManagerForms
 
         private async void LoadClients()
         {
-            //int counter = 0;
             // TODO - page number
-            _clients = await DataAccess.GetUserClients(Manager.Instance().UserId, 1);
+            _clients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo);
+            //int counter = 0;
             //foreach (Client client in clients)
             //{
             //    counter++;
@@ -50,7 +51,7 @@ namespace ClientManagerForms
             //    clientsDataGridView.Rows.Add(row);
 
             //}
-            
+
             clientsDataGridView.DataSource = _clients;
 
             clientsDataGridView.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -88,6 +89,20 @@ namespace ClientManagerForms
         {
             Form clientNewForm = new ClientNewForm(_clients);
             clientNewForm.ShowDialog();
+        }
+
+        private async void nextPageNoButton_Click(object sender, EventArgs e)
+        {
+            _currentPageNo++;
+            var nextClients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo);
+            // TODO - cache previous results
+            _clients.Clear();
+
+            foreach (var client in nextClients)
+            {
+                _clients.Add(client);
+            }            
+
         }
     }
 }
