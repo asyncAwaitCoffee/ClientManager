@@ -149,14 +149,10 @@ namespace ClientManagerLibrary.DataAccess
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-
-                string command = "CLIENT_MANAGER.GET_ALL_USERS";
-
-                await connection.OpenAsync();
-                SqlCommand sqlCommand = connection.CreateCommand();
-
-                sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.GET_ALL_USERS"
+                    );
 
                 SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
 
@@ -182,23 +178,14 @@ namespace ClientManagerLibrary.DataAccess
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-
-                string command = "CLIENT_MANAGER.GET_USER_CLIENTS";
-
-                await connection.OpenAsync();
-                SqlCommand sqlCommand = connection.CreateCommand();
-
-                SqlParameter[] parameters =
-                {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.GET_USER_CLIENTS",
                     new SqlParameter("@USER_ID", userId),
                     new SqlParameter("@PAGE_NO", pageNo),
-                    new SqlParameter("@ITEMS_PER_PAGE", itemsPerPage),
-                };
-
-                sqlCommand.Parameters.AddRange(parameters);
-
-                sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
+                    new SqlParameter("@ITEMS_PER_PAGE", itemsPerPage)
+                    );
+                
 
                 SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
 
@@ -303,16 +290,9 @@ namespace ClientManagerLibrary.DataAccess
             int clientId = -1;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-
-                string command = "CLIENT_MANAGER.CREATE_CLIENT";
-
-                await connection.OpenAsync();
-                SqlCommand sqlCommand = connection.CreateCommand();
-
-                 
-
-                SqlParameter[] parameters =
-                {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.CREATE_CLIENT",
                     new SqlParameter
                     {
                         ParameterName = "@CLIENT_ID",
@@ -322,13 +302,8 @@ namespace ClientManagerLibrary.DataAccess
                     new SqlParameter("@CLIENT_SURNAME", surname),
                     new SqlParameter("@CLIENT_NAME", name),
                     new SqlParameter("@GENDER", gender),
-                    new SqlParameter("@MANAGER_ID", managerId),
-                };
-
-                sqlCommand.Parameters.AddRange(parameters);
-
-                sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
+                    new SqlParameter("@MANAGER_ID", managerId)
+                    );
 
                 await sqlCommand.ExecuteNonQueryAsync();
 
@@ -343,24 +318,12 @@ namespace ClientManagerLibrary.DataAccess
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-
-                string command = "CLIENT_MANAGER.UPDATE_USER_PERMISSIONS_LEVEL";
-
-                await connection.OpenAsync();
-                SqlCommand sqlCommand = connection.CreateCommand();
-
-
-
-                SqlParameter[] parameters =
-                {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.UPDATE_USER_PERMISSIONS_LEVEL",
                     new SqlParameter("@USER_LOGIN", username),
-                    new SqlParameter("@PERMISSIONS_LEVEL", permissionsLevel),
-                };
-
-                sqlCommand.Parameters.AddRange(parameters);
-
-                sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
+                    new SqlParameter("@PERMISSIONS_LEVEL", permissionsLevel)
+                    );
 
                 await sqlCommand.ExecuteNonQueryAsync();
 
