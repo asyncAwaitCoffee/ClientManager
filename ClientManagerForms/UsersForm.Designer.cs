@@ -48,7 +48,6 @@
             usersDataGridView.Name = "usersDataGridView";
             usersDataGridView.Size = new Size(263, 324);
             usersDataGridView.TabIndex = 0;
-            usersDataGridView.CellBeginEdit += usersDataGridView_CellBeginEdit;
             usersDataGridView.CellEndEdit += usersDataGridView_CellEndEdit;
             // 
             // userNameColumn

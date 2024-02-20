@@ -41,10 +41,6 @@ namespace ClientManagerForms
             }
         }
 
-        private void usersDataGridView_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-        }
-
         private void usersDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (sender is DataGridView dg)
