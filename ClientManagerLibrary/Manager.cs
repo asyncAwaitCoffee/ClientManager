@@ -13,7 +13,7 @@ namespace ClientManagerLibrary
         private static object _lock = new();
 
         // TODO - remove defaults for tests
-        private int _userId;
+        private int _userId = 1;
         private int _permissionsLevel = 2;
         
         public int UserId
