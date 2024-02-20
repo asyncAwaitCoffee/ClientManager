@@ -57,7 +57,6 @@ namespace ClientManagerForms
         {
             foreach (var user in _usersToChange)
             {
-                MessageBox.Show($"{user.Key} - {user.Value}");
                 DataAccess.UpdateUserPermissionsLevel(user.Key, user.Value);
             }
 
