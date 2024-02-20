@@ -15,7 +15,7 @@ namespace ClientManagerForms
     public partial class UsersForm : Form
     {
         List<User> _users;
-        Dictionary<string, string> _usersToChange = new Dictionary<string, string>();
+        Dictionary<string, int> _usersToChange = new Dictionary<string, int>();
         public UsersForm()
         {
             InitializeComponent();
@@ -29,6 +29,10 @@ namespace ClientManagerForms
 
             foreach (User user in _users)
             {
+                if (user.PermissionLevel == 9)
+                {
+                    continue;
+                }
                 var row = new DataGridViewRow();
                 row.Height = 50;
                 row.CreateCells(usersDataGridView);
@@ -45,8 +49,8 @@ namespace ClientManagerForms
         {
             if (sender is DataGridView dg)
             {
-                _usersToChange[$"{dg.Rows[e.RowIndex].Cells[0].Value}"] = (string)dg.Rows[e.RowIndex].Cells[1].Value;
-            }            
+                _usersToChange[$"{dg.Rows[e.RowIndex].Cells[0].Value}"] = int.Parse((string)dg.Rows[e.RowIndex].Cells[1].Value);
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -54,7 +58,15 @@ namespace ClientManagerForms
             foreach (var user in _usersToChange)
             {
                 MessageBox.Show($"{user.Key} - {user.Value}");
+                DataAccess.UpdateUserPermissionsLevel(user.Key, user.Value);
             }
+
+            Close();
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
