@@ -13,30 +13,18 @@ namespace ClientManagerLibrary.DataAccess
     public static class DataAccess
     {
         private static readonly string connectionString = "Server=MSI;Database=COURSES_DB;Trusted_Connection=True;TrustServerCertificate=True;";
-        /// <summary>
-        /// For tests only
-        /// </summary>
-        /// <param name="command">SQL comand string</param>
-        public static async Task<List<T>> ExecuteSQLCommand<T>(string command, CommandType commandType, params SqlParameter[] parameters)
+
+        private static async Task<SqlCommand> CreateSqlCommand(SqlConnection connection, string command, params SqlParameter[] sqlParameters)
         {
-            // TODO - make as universal sql executor
-            List<T> users = new List<T>();
+            await connection.OpenAsync();
+            SqlCommand sqlCommand = connection.CreateCommand();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                await connection.OpenAsync();
-                SqlCommand sqlCommand = connection.CreateCommand();
+            sqlCommand.Parameters.AddRange(sqlParameters);
 
-                sqlCommand.Parameters.AddRange(parameters);
+            sqlCommand.CommandText = command;
+            sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                sqlCommand.CommandText = command;
-                sqlCommand.CommandType = commandType;
-
-                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
-            }
-
-            return users;
-
+            return sqlCommand;
         }
         /// <summary>
         /// Saves user's login and encrypted password to the DB
@@ -103,33 +91,24 @@ namespace ClientManagerLibrary.DataAccess
                 data = System.Security.Cryptography.SHA256.HashData(data);
                 string cryptPassword = Encoding.UTF8.GetString(data);
 
-                string command = "CLIENT_MANAGER.USER_AUTHORIZATION";
-
-                await connection.OpenAsync();
-                SqlCommand sqlCommand = connection.CreateCommand();
-                
-                SqlParameter[] parameters =
-                {
-                    new SqlParameter("@USERNAME", username),
-                    new SqlParameter("@CRYPTPASSWORD", cryptPassword),
-                    new SqlParameter
-                    {
-                        ParameterName = "@USER_ID",
-                        SqlDbType = SqlDbType.Int,
-                        Direction = ParameterDirection.Output
-                    },
-                    new SqlParameter
-                    {
-                        ParameterName = "@PERMISSIONS_LEVEL",
-                        SqlDbType = SqlDbType.Int,
-                        Direction = ParameterDirection.Output
-                    },
-                };
-
-                sqlCommand.Parameters.AddRange(parameters);
-
-                sqlCommand.CommandText = command;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                        connection,
+                        "CLIENT_MANAGER.USER_AUTHORIZATION",
+                        new SqlParameter("@USERNAME", username),
+                        new SqlParameter("@CRYPTPASSWORD", cryptPassword),
+                        new SqlParameter
+                        {
+                            ParameterName = "@USER_ID",
+                            SqlDbType = SqlDbType.Int,
+                            Direction = ParameterDirection.Output
+                        },
+                        new SqlParameter
+                        {
+                            ParameterName = "@PERMISSIONS_LEVEL",
+                            SqlDbType = SqlDbType.Int,
+                            Direction = ParameterDirection.Output
+                        }
+                    );
 
                 await sqlCommand.ExecuteNonQueryAsync();
 
@@ -138,8 +117,7 @@ namespace ClientManagerLibrary.DataAccess
                     int userId = (int)sqlCommand.Parameters["@USER_ID"].Value;
                     int permissionsLevel = (int)sqlCommand.Parameters["@PERMISSIONS_LEVEL"].Value;
                     return (userId, permissionsLevel);
-                }
-                
+                }                
 
                 return (null, null);
 
@@ -359,6 +337,34 @@ namespace ClientManagerLibrary.DataAccess
             }
 
             return clientId;
+        }
+
+        public static async void UpdateUserPermissionsLevel(string username, int permissionsLevel)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                string command = "CLIENT_MANAGER.UPDATE_USER_PERMISSIONS_LEVEL";
+
+                await connection.OpenAsync();
+                SqlCommand sqlCommand = connection.CreateCommand();
+
+
+
+                SqlParameter[] parameters =
+                {
+                    new SqlParameter("@USER_LOGIN", username),
+                    new SqlParameter("@PERMISSIONS_LEVEL", permissionsLevel),
+                };
+
+                sqlCommand.Parameters.AddRange(parameters);
+
+                sqlCommand.CommandText = command;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                await sqlCommand.ExecuteNonQueryAsync();
+
+            }
         }
     }
 }
