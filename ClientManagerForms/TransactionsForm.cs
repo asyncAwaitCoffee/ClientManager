@@ -24,6 +24,7 @@ namespace ClientManagerForms
 
         private async void LoadData()
         {
+            // TODO - filter
             List<Transaction> transactions = await DataAccess.GetFilteredTransactions(null, null);
 
             foreach (var tran in transactions)
@@ -31,6 +32,8 @@ namespace ClientManagerForms
                 var row = new DataGridViewRow();
                 row.Height = 50;
                 row.CreateCells(transactionsDataGridView);
+
+                row.Tag = tran.Id;
 
                 row.Cells[0].Value = tran.ClientFrom.FullName;
                 row.Cells[1].Value = tran.ClientTo.FullName;
@@ -42,6 +45,15 @@ namespace ClientManagerForms
 
                 transactionsDataGridView.Rows.Add(row);
             }
+        }
+
+        private async void conductButton_Click(object sender, EventArgs e)
+        {
+            var transactionRow = transactionsDataGridView.SelectedCells[0].OwningRow;
+
+            int success = await DataAccess.ConductTransaction((int)transactionRow.Tag);
+
+            MessageBox.Show($"Transaction { (success > 0 ? "succeeded" : "failed") }");
         }
     }
 }

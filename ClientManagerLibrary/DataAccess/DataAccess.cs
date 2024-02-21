@@ -363,6 +363,7 @@ namespace ClientManagerLibrary.DataAccess
                     filteredTransactions.Add(
                             new Transaction()
                             {
+                                Id = result.GetInt32("ID"),
                                 ClientFrom = new Client() {
                                     Id = result.GetInt32("CLIENT_FROM"),
                                     SurName = result.GetString("CLIENT_SURNAME_FROM"),
@@ -385,6 +386,32 @@ namespace ClientManagerLibrary.DataAccess
 
             return filteredTransactions;
         }
+
+        public static async Task<int> ConductTransaction(int transactionId)
+        {
+            int result;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlParameter returnValue = new SqlParameter();
+                returnValue.Direction = ParameterDirection.ReturnValue;
+                returnValue.DbType = DbType.Boolean;
+
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.CONDUCT_TRANSACTION",
+                    new SqlParameter("@TRANSACTION_ID", transactionId),
+                    returnValue
+                    );                
+
+                await sqlCommand.ExecuteNonQueryAsync();
+
+                result = (int) returnValue.Value;
+            }
+
+            return result;
+        }
+
         public static async Task<int> CreateAccount(int clientId, string accountCode)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

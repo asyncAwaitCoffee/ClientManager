@@ -45,7 +45,6 @@ namespace ClientManagerForms
 
         private void clientsDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var x = clientsDataGridView.SelectedCells[0].OwningRow;
             Form clientForm = new ClientEditForm(clientsDataGridView.SelectedCells[0].OwningRow);
             clientForm.ShowDialog();
         }
