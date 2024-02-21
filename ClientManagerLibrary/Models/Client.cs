@@ -25,5 +25,10 @@ namespace ClientManagerLibrary.Models
                 return Gender == 1 ? 'M' : 'F';
             } }
 
+        public string FullName {
+            get {
+                return $"{SurName} {Name}";
+            } }
+
     }
 }

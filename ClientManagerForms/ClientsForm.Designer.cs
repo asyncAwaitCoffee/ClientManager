@@ -150,6 +150,7 @@
             transactionsMenuItemStatus.Name = "transactionsMenuItemStatus";
             transactionsMenuItemStatus.Size = new Size(180, 22);
             transactionsMenuItemStatus.Text = "Status";
+            transactionsMenuItemStatus.Click += transactionsMenuItemStatus_Click;
             // 
             // permissionsToolStripMenuItem
             // 

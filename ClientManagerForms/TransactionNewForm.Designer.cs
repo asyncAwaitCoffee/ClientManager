@@ -166,6 +166,7 @@
             Controls.Add(amountLabel);
             Controls.Add(amountTextBox);
             Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(5, 6, 5, 6);
             Name = "TransactionNewForm";
             StartPosition = FormStartPosition.CenterParent;
