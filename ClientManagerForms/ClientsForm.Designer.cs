@@ -38,11 +38,11 @@
             menuStrip1 = new MenuStrip();
             clientMenuItem = new ToolStripMenuItem();
             createMenuSubItemClientNew = new ToolStripMenuItem();
-            createMenuSubItemAccount = new ToolStripMenuItem();
             transactionsMenuItem = new ToolStripMenuItem();
             transactionsMenuItemNew = new ToolStripMenuItem();
             transactionsMenuItemLog = new ToolStripMenuItem();
             permissionsToolStripMenuItem = new ToolStripMenuItem();
+            usersToolStripMenuItem = new ToolStripMenuItem();
             managersToolStripMenuItem = new ToolStripMenuItem();
             nextPageNoButton = new Button();
             previousPageNoButton = new Button();
@@ -66,6 +66,7 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             clientsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            clientsDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             clientsDataGridView.Location = new Point(11, 41);
             clientsDataGridView.Margin = new Padding(2);
             clientsDataGridView.Name = "clientsDataGridView";
@@ -105,7 +106,7 @@
             // 
             // clientMenuItem
             // 
-            clientMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createMenuSubItemClientNew, createMenuSubItemAccount });
+            clientMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createMenuSubItemClientNew });
             clientMenuItem.Name = "clientMenuItem";
             clientMenuItem.Size = new Size(50, 20);
             clientMenuItem.Text = "Client";
@@ -113,15 +114,9 @@
             // createMenuSubItemClientNew
             // 
             createMenuSubItemClientNew.Name = "createMenuSubItemClientNew";
-            createMenuSubItemClientNew.Size = new Size(119, 22);
+            createMenuSubItemClientNew.Size = new Size(98, 22);
             createMenuSubItemClientNew.Text = "New";
             createMenuSubItemClientNew.Click += createMenuSubItemClient_Click;
-            // 
-            // createMenuSubItemAccount
-            // 
-            createMenuSubItemAccount.Name = "createMenuSubItemAccount";
-            createMenuSubItemAccount.Size = new Size(119, 22);
-            createMenuSubItemAccount.Text = "Account";
             // 
             // transactionsMenuItem
             // 
@@ -146,18 +141,24 @@
             // 
             // permissionsToolStripMenuItem
             // 
-            permissionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { managersToolStripMenuItem });
+            permissionsToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { usersToolStripMenuItem, managersToolStripMenuItem });
             permissionsToolStripMenuItem.Name = "permissionsToolStripMenuItem";
             permissionsToolStripMenuItem.Size = new Size(82, 20);
             permissionsToolStripMenuItem.Text = "Permissions";
             permissionsToolStripMenuItem.Visible = false;
+            // 
+            // usersToolStripMenuItem
+            // 
+            usersToolStripMenuItem.Name = "usersToolStripMenuItem";
+            usersToolStripMenuItem.Size = new Size(126, 22);
+            usersToolStripMenuItem.Text = "Users";
+            usersToolStripMenuItem.Click += managersToolStripMenuItem_Click;
             // 
             // managersToolStripMenuItem
             // 
             managersToolStripMenuItem.Name = "managersToolStripMenuItem";
             managersToolStripMenuItem.Size = new Size(126, 22);
             managersToolStripMenuItem.Text = "Managers";
-            managersToolStripMenuItem.Click += managersToolStripMenuItem_Click;
             // 
             // nextPageNoButton
             // 
@@ -218,13 +219,13 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem clientMenuItem;
         private ToolStripMenuItem createMenuSubItemClientNew;
-        private ToolStripMenuItem createMenuSubItemAccount;
         private ToolStripMenuItem transactionsMenuItem;
         private ToolStripMenuItem transactionsMenuItemNew;
         private ToolStripMenuItem transactionsMenuItemLog;
         private Button nextPageNoButton;
         private Button previousPageNoButton;
         private ToolStripMenuItem permissionsToolStripMenuItem;
+        private ToolStripMenuItem usersToolStripMenuItem;
         private ToolStripMenuItem managersToolStripMenuItem;
     }
 }

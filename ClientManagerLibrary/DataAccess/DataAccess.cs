@@ -343,7 +343,7 @@ namespace ClientManagerLibrary.DataAccess
             }
         }
 
-        public static async Task<List<Transaction>> GetFilteredTransactions(int? clientIdFrom, int? clientIdTo)
+        public static async Task<List<Transaction>> GetFilteredTransactions(string? accountFrom, string? accountTo)
         {
             List<Transaction> filteredTransactions = new List<Transaction>();
 
@@ -352,8 +352,8 @@ namespace ClientManagerLibrary.DataAccess
                 SqlCommand sqlCommand = await CreateSqlCommand(
                     connection,
                     "CLIENT_MANAGER.GET_TRANSACTIONS_BY_FILTER",
-                    new SqlParameter("@CLIENT_FROM", clientIdFrom == null ? DBNull.Value : clientIdFrom),
-                    new SqlParameter("@CLIENT_TO", clientIdTo == null ? DBNull.Value : clientIdTo)
+                    new SqlParameter("@ACCOUNT_FROM", accountFrom == null ? DBNull.Value : accountFrom),
+                    new SqlParameter("@ACCOUNT_TO", accountTo == null ? DBNull.Value : accountTo)
                     );
 
                 SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
@@ -412,6 +412,8 @@ namespace ClientManagerLibrary.DataAccess
 
             return result;
         }
+
+
 
         public static async Task<int> CreateAccount(int clientId, string accountCode)
         {

@@ -105,6 +105,7 @@
             Name = "AccountNewForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "New Account";
+            Shown += AccountNewForm_Shown;
             ((System.ComponentModel.ISupportInitialize)accountCodeErrorProvider).EndInit();
             ResumeLayout(false);
             PerformLayout();

@@ -63,5 +63,10 @@ namespace ClientManagerForms
                 accountCodeErrorProvider.Clear();
             }
         }
+
+        private void AccountNewForm_Shown(object sender, EventArgs e)
+        {
+            newAccountCodeTextBox.Focus();
+        }
     }
 }
