@@ -28,29 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            clientFullNameTextBox = new TextBox();
+            clientNameTextBox = new TextBox();
             clientAccountsIdscomboBox = new ComboBox();
             saveClientButton = new Button();
             cancelButton = new Button();
             clientSurnameTextBox = new TextBox();
             balanceTextBox = new TextBox();
-            newClientLabel = new Label();
-            accountLabel = new Label();
+            addNewAccountLinkLabel = new LinkLabel();
+            accountsGroupBox = new GroupBox();
+            groupBox1 = new GroupBox();
+            accountsGroupBox.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
-            // clientFullNameTextBox
+            // clientNameTextBox
             // 
-            clientFullNameTextBox.Location = new Point(36, 142);
-            clientFullNameTextBox.Name = "clientFullNameTextBox";
-            clientFullNameTextBox.PlaceholderText = "Name";
-            clientFullNameTextBox.Size = new Size(386, 50);
-            clientFullNameTextBox.TabIndex = 0;
+            clientNameTextBox.Location = new Point(19, 111);
+            clientNameTextBox.Name = "clientNameTextBox";
+            clientNameTextBox.PlaceholderText = "Name";
+            clientNameTextBox.Size = new Size(408, 43);
+            clientNameTextBox.TabIndex = 0;
             // 
             // clientAccountsIdscomboBox
             // 
             clientAccountsIdscomboBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
             clientAccountsIdscomboBox.FormattingEnabled = true;
-            clientAccountsIdscomboBox.Location = new Point(36, 242);
+            clientAccountsIdscomboBox.Location = new Point(30, 63);
             clientAccountsIdscomboBox.Name = "clientAccountsIdscomboBox";
             clientAccountsIdscomboBox.Size = new Size(220, 40);
             clientAccountsIdscomboBox.TabIndex = 1;
@@ -59,7 +62,7 @@
             // saveClientButton
             // 
             saveClientButton.Enabled = false;
-            saveClientButton.Location = new Point(36, 326);
+            saveClientButton.Location = new Point(48, 386);
             saveClientButton.Name = "saveClientButton";
             saveClientButton.Size = new Size(147, 69);
             saveClientButton.TabIndex = 2;
@@ -69,7 +72,7 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(275, 326);
+            cancelButton.Location = new Point(276, 386);
             cancelButton.Name = "cancelButton";
             cancelButton.Size = new Size(147, 69);
             cancelButton.TabIndex = 3;
@@ -79,72 +82,90 @@
             // 
             // clientSurnameTextBox
             // 
-            clientSurnameTextBox.Location = new Point(36, 75);
+            clientSurnameTextBox.Location = new Point(19, 44);
             clientSurnameTextBox.Name = "clientSurnameTextBox";
             clientSurnameTextBox.PlaceholderText = "Surname";
-            clientSurnameTextBox.Size = new Size(386, 50);
+            clientSurnameTextBox.Size = new Size(408, 43);
             clientSurnameTextBox.TabIndex = 4;
             // 
             // balanceTextBox
             // 
             balanceTextBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            balanceTextBox.Location = new Point(275, 242);
+            balanceTextBox.Location = new Point(269, 63);
             balanceTextBox.Name = "balanceTextBox";
             balanceTextBox.ReadOnly = true;
             balanceTextBox.Size = new Size(147, 39);
             balanceTextBox.TabIndex = 5;
             // 
-            // newClientLabel
+            // addNewAccountLinkLabel
             // 
-            newClientLabel.AutoSize = true;
-            newClientLabel.Location = new Point(12, 9);
-            newClientLabel.Name = "newClientLabel";
-            newClientLabel.Size = new Size(173, 45);
-            newClientLabel.TabIndex = 6;
-            newClientLabel.Text = "Client info:";
+            addNewAccountLinkLabel.AutoSize = true;
+            addNewAccountLinkLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            addNewAccountLinkLabel.Location = new Point(30, 106);
+            addNewAccountLinkLabel.Name = "addNewAccountLinkLabel";
+            addNewAccountLinkLabel.Size = new Size(95, 30);
+            addNewAccountLinkLabel.TabIndex = 8;
+            addNewAccountLinkLabel.TabStop = true;
+            addNewAccountLinkLabel.Text = "Add new";
+            addNewAccountLinkLabel.LinkClicked += addNewAccountLinkLabel_LinkClicked;
             // 
-            // accountLabel
+            // accountsGroupBox
             // 
-            accountLabel.AutoSize = true;
-            accountLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            accountLabel.Location = new Point(36, 207);
-            accountLabel.Name = "accountLabel";
-            accountLabel.Size = new Size(116, 32);
-            accountLabel.TabIndex = 7;
-            accountLabel.Text = "Accounts:";
+            accountsGroupBox.Controls.Add(clientAccountsIdscomboBox);
+            accountsGroupBox.Controls.Add(addNewAccountLinkLabel);
+            accountsGroupBox.Controls.Add(balanceTextBox);
+            accountsGroupBox.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            accountsGroupBox.Location = new Point(12, 208);
+            accountsGroupBox.Name = "accountsGroupBox";
+            accountsGroupBox.Size = new Size(447, 146);
+            accountsGroupBox.TabIndex = 9;
+            accountsGroupBox.TabStop = false;
+            accountsGroupBox.Text = "Accounts:";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(clientSurnameTextBox);
+            groupBox1.Controls.Add(clientNameTextBox);
+            groupBox1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            groupBox1.Location = new Point(12, 12);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(447, 190);
+            groupBox1.TabIndex = 10;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Client info:";
             // 
             // ClientEditForm
             // 
             AutoScaleDimensions = new SizeF(18F, 45F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(471, 433);
-            Controls.Add(accountLabel);
-            Controls.Add(newClientLabel);
-            Controls.Add(balanceTextBox);
-            Controls.Add(clientSurnameTextBox);
+            ClientSize = new Size(471, 488);
+            Controls.Add(groupBox1);
+            Controls.Add(accountsGroupBox);
             Controls.Add(cancelButton);
             Controls.Add(saveClientButton);
-            Controls.Add(clientAccountsIdscomboBox);
-            Controls.Add(clientFullNameTextBox);
             Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(8, 9, 8, 9);
             Name = "ClientEditForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "ClientForm";
+            accountsGroupBox.ResumeLayout(false);
+            accountsGroupBox.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private TextBox clientFullNameTextBox;
+        private TextBox clientNameTextBox;
         private ComboBox clientAccountsIdscomboBox;
         private Button saveClientButton;
         private Button cancelButton;
         private TextBox clientSurnameTextBox;
         private TextBox balanceTextBox;
-        private Label newClientLabel;
-        private Label accountLabel;
+        private LinkLabel addNewAccountLinkLabel;
+        private GroupBox accountsGroupBox;
+        private GroupBox groupBox1;
     }
 }

@@ -213,7 +213,6 @@ namespace ClientManagerLibrary.DataAccess
                     accounts.Add(
                             new Account()
                             {
-                                Id = result.GetInt32("ID"),
                                 Code = result.GetString("CODE"),
                                 Balance = result.GetDecimal("BALANCE")
                             }
@@ -385,6 +384,20 @@ namespace ClientManagerLibrary.DataAccess
             }
 
             return filteredTransactions;
+        }
+        public static async Task<int> CreateAccount(int clientId, string accountCode)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.CREATE_ACCOUNT",
+                    new SqlParameter("@CLIENT_ID", clientId),
+                    new SqlParameter("@ACCOUNT_CODE", accountCode)
+                    );
+
+                return await sqlCommand.ExecuteNonQueryAsync();
+            }
         }
     }
 }
