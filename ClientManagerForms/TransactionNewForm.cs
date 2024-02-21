@@ -14,8 +14,10 @@ namespace ClientManagerForms
 {
     public partial class TransactionNewForm : Form
     {
-        Client _clientFrom;
-        Client _clientTo;
+        private Client _clientFrom;
+        private Client _clientTo;
+        private string _accountFrom;
+        private string _accountTo;
         public TransactionNewForm()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace ClientManagerForms
             if (_clientFrom != null)
             {
                 clientFromTextBox.Text = $"{_clientFrom.SurName} {_clientFrom.Name}";
+                _accountFrom = accountFromTextBox.Text;
             }
             else
             {
@@ -40,6 +43,7 @@ namespace ClientManagerForms
             if (_clientTo != null)
             {
                 clientToTextBox.Text = $"{_clientTo.SurName} {_clientTo.Name}";
+                _accountTo = accountToTextBox.Text;
             }
             else
             {
@@ -54,7 +58,7 @@ namespace ClientManagerForms
                 return;
             }
             decimal.TryParse(amountTextBox.Text, out decimal amount);
-            DataAccess.CreateTransaction(_clientFrom.Id, _clientTo.Id, accountFromTextBox.Text, accountToTextBox.Text, amount, isImidiateCheckBox.Checked);
+            DataAccess.CreateTransaction(_clientFrom.Id, _clientTo.Id, _accountFrom, _accountTo, amount, isImidiateCheckBox.Checked);
 
             Close();
         }
