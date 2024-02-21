@@ -27,13 +27,13 @@ namespace ClientManagerForms
             LoadData();
 
             clientSurnameTextBox.TextChanged += clientSurnameTextBox_TextChanged;
-            clientFullNameTextBox.TextChanged += clientFullNameTextBox_TextChanged;
+            clientNameTextBox.TextChanged += clientNameTextBox_TextChanged;
         }
 
         private async void LoadData()
         {
             clientSurnameTextBox.Text = ClientRow.Cells[1].Value.ToString();
-            clientFullNameTextBox.Text = ClientRow.Cells[2].Value.ToString();
+            clientNameTextBox.Text = ClientRow.Cells[2].Value.ToString();
 
             clientAccountsIdscomboBox.DataSource = Accounts;
             clientAccountsIdscomboBox.DisplayMember = "Code";
@@ -59,10 +59,10 @@ namespace ClientManagerForms
                 return;
             }
 
-            await DataAccess.UpdateClient((int)ClientRow.Cells[0].Value, clientSurnameTextBox.Text, clientFullNameTextBox.Text);
+            await DataAccess.UpdateClient((int)ClientRow.Cells[0].Value, clientSurnameTextBox.Text, clientNameTextBox.Text);
 
             ClientRow.Cells[1].Value = clientSurnameTextBox.Text;
-            ClientRow.Cells[2].Value = clientFullNameTextBox.Text;
+            ClientRow.Cells[2].Value = clientNameTextBox.Text;
 
             MessageBox.Show("Data successfuly saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             this.Close();
@@ -86,9 +86,15 @@ namespace ClientManagerForms
             saveClientButton.Enabled = true;
         }
 
-        private void clientFullNameTextBox_TextChanged(object sender, EventArgs e)
+        private void clientNameTextBox_TextChanged(object sender, EventArgs e)
         {
             saveClientButton.Enabled = true;
+        }
+
+        private void addNewAccountLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            AccountNewForm form = new AccountNewForm(ClientRow, Accounts);
+            form.ShowDialog();
         }
     }
 }

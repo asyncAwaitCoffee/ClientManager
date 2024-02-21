@@ -24,7 +24,6 @@ namespace ClientManagerForms
 
             if (Manager.Instance().PermissionsLevel > 1)
             {
-                createMenuSubItemManager.Visible = true;
                 permissionsToolStripMenuItem.Visible = true;
             }
 

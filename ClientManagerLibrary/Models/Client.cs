@@ -24,7 +24,7 @@ namespace ClientManagerLibrary.Models
             {
                 return Gender == 1 ? 'M' : 'F';
             } }
-
+        [Browsable(false)]
         public string FullName {
             get {
                 return $"{SurName} {Name}";
