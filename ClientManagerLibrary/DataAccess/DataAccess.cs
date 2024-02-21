@@ -343,5 +343,48 @@ namespace ClientManagerLibrary.DataAccess
                 await sqlCommand.ExecuteNonQueryAsync();
             }
         }
+
+        public static async Task<List<Transaction>> GetFilteredTransactions(int? clientIdFrom, int? clientIdTo)
+        {
+            List<Transaction> filteredTransactions = new List<Transaction>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.GET_TRANSACTIONS_BY_FILTER",
+                    new SqlParameter("@CLIENT_FROM", clientIdFrom == null ? DBNull.Value : clientIdFrom),
+                    new SqlParameter("@CLIENT_TO", clientIdTo == null ? DBNull.Value : clientIdTo)
+                    );
+
+                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
+
+                while (await result.ReadAsync())
+                {
+                    filteredTransactions.Add(
+                            new Transaction()
+                            {
+                                ClientFrom = new Client() {
+                                    Id = result.GetInt32("CLIENT_FROM"),
+                                    SurName = result.GetString("CLIENT_SURNAME_FROM"),
+                                    Name = result.GetString("CLIENT_NAME_FROM") },
+                                ClientTo = new Client()
+                                {
+                                    Id = result.GetInt32("CLIENT_TO"),
+                                    SurName = result.GetString("CLIENT_SURNAME_TO"),
+                                    Name = result.GetString("CLIENT_NAME_TO")
+                                },
+                                AccountFrom = result.GetString("ACCOUNT_FROM"),
+                                AccountTo = result.GetString("ACCOUNT_TO"),
+                                Amount = result.GetDecimal("AMOUNT"),
+                                DateTimeCreated = result.GetDateTime("CREATION_DATE_TIME"),
+                                DateTimeTranfered = result.IsDBNull("TRANSFER_DATE_TIME") ? null : result.GetDateTime("TRANSFER_DATE_TIME")
+                            }
+                        );
+                }
+            }
+
+            return filteredTransactions;
+        }
     }
 }

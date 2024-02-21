@@ -133,5 +133,11 @@ namespace ClientManagerForms
             TransactionNewForm form = new TransactionNewForm();
             form.ShowDialog();
         }
+
+        private void transactionsMenuItemStatus_Click(object sender, EventArgs e)
+        {
+            TransactionsForm form = new TransactionsForm();
+            form.ShowDialog();
+        }
     }
 }
