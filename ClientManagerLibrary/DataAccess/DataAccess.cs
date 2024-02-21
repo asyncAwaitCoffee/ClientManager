@@ -387,26 +387,27 @@ namespace ClientManagerLibrary.DataAccess
             return filteredTransactions;
         }
 
-        public static async Task<int> ConductTransaction(int transactionId)
+        public static async Task<DateTime?> ConductTransaction(int transactionId)
         {
-            int result;
+            DateTime? result;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlParameter returnValue = new SqlParameter();
-                returnValue.Direction = ParameterDirection.ReturnValue;
-                returnValue.DbType = DbType.Boolean;
-
                 SqlCommand sqlCommand = await CreateSqlCommand(
                     connection,
                     "CLIENT_MANAGER.CONDUCT_TRANSACTION",
                     new SqlParameter("@TRANSACTION_ID", transactionId),
-                    returnValue
+                    new SqlParameter
+                    {
+                        ParameterName = "@TRANSFER_DATE_TIME",
+                        SqlDbType = SqlDbType.DateTime,
+                        Direction = ParameterDirection.Output
+                    }
                     );                
 
                 await sqlCommand.ExecuteNonQueryAsync();
 
-                result = (int) returnValue.Value;
+                result = (DateTime?)(sqlCommand.Parameters["@TRANSFER_DATE_TIME"].Value == DBNull.Value ? null : sqlCommand.Parameters["@TRANSFER_DATE_TIME"].Value);
             }
 
             return result;

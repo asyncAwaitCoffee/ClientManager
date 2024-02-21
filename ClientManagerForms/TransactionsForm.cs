@@ -51,9 +51,11 @@ namespace ClientManagerForms
         {
             var transactionRow = transactionsDataGridView.SelectedCells[0].OwningRow;
 
-            int success = await DataAccess.ConductTransaction((int)transactionRow.Tag);
+            DateTime? success = await DataAccess.ConductTransaction((int)transactionRow.Tag);
 
-            MessageBox.Show($"Transaction { (success > 0 ? "succeeded" : "failed") }");
+            transactionRow.Cells[6].Value = success;
+
+            MessageBox.Show($"Transaction { (success is null ? "failed" : "succeeded") }");
         }
     }
 }
