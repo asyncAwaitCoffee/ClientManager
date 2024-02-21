@@ -141,13 +141,14 @@
             // transactionsMenuItemNew
             // 
             transactionsMenuItemNew.Name = "transactionsMenuItemNew";
-            transactionsMenuItemNew.Size = new Size(106, 22);
+            transactionsMenuItemNew.Size = new Size(180, 22);
             transactionsMenuItemNew.Text = "New";
+            transactionsMenuItemNew.Click += transactionsMenuItemNew_Click;
             // 
             // transactionsMenuItemStatus
             // 
             transactionsMenuItemStatus.Name = "transactionsMenuItemStatus";
-            transactionsMenuItemStatus.Size = new Size(106, 22);
+            transactionsMenuItemStatus.Size = new Size(180, 22);
             transactionsMenuItemStatus.Text = "Status";
             // 
             // permissionsToolStripMenuItem

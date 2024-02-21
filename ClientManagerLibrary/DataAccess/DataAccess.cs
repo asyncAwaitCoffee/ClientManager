@@ -288,5 +288,60 @@ namespace ClientManagerLibrary.DataAccess
 
             }
         }
+        public static async Task<Client> GetClientByAccount(string code)
+        {
+            Client client;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.GET_CLIENT_BY_ACCOUNT",
+                    new SqlParameter("@ACCOUNT_CODE", code)
+                    );
+
+                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
+
+                if (!result.HasRows)
+                    return null;
+
+                await result.ReadAsync();
+
+                client = new Client()
+                {
+                    Id = result.GetInt32("ID"),
+                    SurName = result.GetString("CLIENT_SURNAME"),
+                    Name = result.GetString("CLIENT_NAME"),
+                };
+
+
+            }
+
+            return client;
+        }
+
+        public static async void CreateTransaction(int clientIdFrom, int clientIdTo, string accountFrom, string accountTo, decimal amount, bool isImidiate)
+        {
+            if (amount <= 0 || clientIdFrom == 0 || clientIdTo == 0 || accountFrom == accountTo)
+            {
+                return;
+            }
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.CREATE_TRANSACTION",
+                    new SqlParameter("@CLIENT_FROM", clientIdFrom),
+                    new SqlParameter("@CLIENT_TO", clientIdTo),
+                    new SqlParameter("@ACCOUNT_FROM", accountFrom),
+                    new SqlParameter("@ACCOUNT_TO", accountTo),
+                    new SqlParameter("@AMOUNT", amount),
+                    new SqlParameter("@IS_IMIDIATE", isImidiate)
+                    );
+
+                await sqlCommand.ExecuteNonQueryAsync();
+            }
+        }
     }
 }
