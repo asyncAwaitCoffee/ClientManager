@@ -145,10 +145,11 @@
             Controls.Add(cancelButton);
             Controls.Add(saveClientButton);
             Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(8, 9, 8, 9);
             Name = "ClientEditForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "ClientForm";
+            Text = "Client Edit";
             accountsGroupBox.ResumeLayout(false);
             accountsGroupBox.PerformLayout();
             groupBox1.ResumeLayout(false);

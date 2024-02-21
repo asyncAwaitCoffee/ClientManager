@@ -141,6 +141,7 @@
             Controls.Add(nameTextBox);
             Controls.Add(surnameTextBox);
             Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(6);
             Name = "ClientNewForm";
             StartPosition = FormStartPosition.CenterParent;
