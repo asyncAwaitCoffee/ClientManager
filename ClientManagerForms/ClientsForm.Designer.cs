@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             clientsDataGridView = new DataGridView();
             clientsFormNotifyIcon = new NotifyIcon(components);
             menuStrip1 = new MenuStrip();
@@ -41,7 +41,7 @@
             createMenuSubItemAccount = new ToolStripMenuItem();
             transactionsMenuItem = new ToolStripMenuItem();
             transactionsMenuItemNew = new ToolStripMenuItem();
-            transactionsMenuItemStatus = new ToolStripMenuItem();
+            transactionsMenuItemLog = new ToolStripMenuItem();
             permissionsToolStripMenuItem = new ToolStripMenuItem();
             managersToolStripMenuItem = new ToolStripMenuItem();
             nextPageNoButton = new Button();
@@ -54,31 +54,31 @@
             // 
             clientsDataGridView.AllowUserToAddRows = false;
             clientsDataGridView.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(224, 224, 224);
-            clientsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            clientsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             clientsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             clientsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Window;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle6.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            clientsDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            clientsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             clientsDataGridView.Location = new Point(11, 41);
             clientsDataGridView.Margin = new Padding(2);
             clientsDataGridView.Name = "clientsDataGridView";
             clientsDataGridView.ReadOnly = true;
             clientsDataGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle7.BackColor = Color.Silver;
-            dataGridViewCellStyle7.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle7.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            clientsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.BackColor = SystemColors.Control;
-            clientsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.BackColor = Color.Silver;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            clientsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = Color.Silver;
+            clientsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             clientsDataGridView.RowTemplate.Height = 50;
             clientsDataGridView.Size = new Size(612, 454);
             clientsDataGridView.TabIndex = 1;
@@ -113,19 +113,19 @@
             // createMenuSubItemClientNew
             // 
             createMenuSubItemClientNew.Name = "createMenuSubItemClientNew";
-            createMenuSubItemClientNew.Size = new Size(180, 22);
+            createMenuSubItemClientNew.Size = new Size(119, 22);
             createMenuSubItemClientNew.Text = "New";
             createMenuSubItemClientNew.Click += createMenuSubItemClient_Click;
             // 
             // createMenuSubItemAccount
             // 
             createMenuSubItemAccount.Name = "createMenuSubItemAccount";
-            createMenuSubItemAccount.Size = new Size(180, 22);
+            createMenuSubItemAccount.Size = new Size(119, 22);
             createMenuSubItemAccount.Text = "Account";
             // 
             // transactionsMenuItem
             // 
-            transactionsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { transactionsMenuItemNew, transactionsMenuItemStatus });
+            transactionsMenuItem.DropDownItems.AddRange(new ToolStripItem[] { transactionsMenuItemNew, transactionsMenuItemLog });
             transactionsMenuItem.Name = "transactionsMenuItem";
             transactionsMenuItem.Size = new Size(84, 20);
             transactionsMenuItem.Text = "Transactions";
@@ -133,16 +133,16 @@
             // transactionsMenuItemNew
             // 
             transactionsMenuItemNew.Name = "transactionsMenuItemNew";
-            transactionsMenuItemNew.Size = new Size(106, 22);
+            transactionsMenuItemNew.Size = new Size(98, 22);
             transactionsMenuItemNew.Text = "New";
             transactionsMenuItemNew.Click += transactionsMenuItemNew_Click;
             // 
-            // transactionsMenuItemStatus
+            // transactionsMenuItemLog
             // 
-            transactionsMenuItemStatus.Name = "transactionsMenuItemStatus";
-            transactionsMenuItemStatus.Size = new Size(106, 22);
-            transactionsMenuItemStatus.Text = "Status";
-            transactionsMenuItemStatus.Click += transactionsMenuItemStatus_Click;
+            transactionsMenuItemLog.Name = "transactionsMenuItemLog";
+            transactionsMenuItemLog.Size = new Size(98, 22);
+            transactionsMenuItemLog.Text = "Log";
+            transactionsMenuItemLog.Click += transactionsMenuItemStatus_Click;
             // 
             // permissionsToolStripMenuItem
             // 
@@ -198,7 +198,7 @@
             Margin = new Padding(7);
             Name = "ClientsForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ClientsForm";
+            Text = "Clients";
             SizeChanged += ClientsForm_SizeChanged;
             ((System.ComponentModel.ISupportInitialize)clientsDataGridView).EndInit();
             menuStrip1.ResumeLayout(false);
@@ -221,7 +221,7 @@
         private ToolStripMenuItem createMenuSubItemAccount;
         private ToolStripMenuItem transactionsMenuItem;
         private ToolStripMenuItem transactionsMenuItemNew;
-        private ToolStripMenuItem transactionsMenuItemStatus;
+        private ToolStripMenuItem transactionsMenuItemLog;
         private Button nextPageNoButton;
         private Button previousPageNoButton;
         private ToolStripMenuItem permissionsToolStripMenuItem;

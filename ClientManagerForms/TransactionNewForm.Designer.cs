@@ -171,7 +171,7 @@
             Margin = new Padding(5, 6, 5, 6);
             Name = "TransactionNewForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "TransactionNewForm";
+            Text = "New Transaction";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);

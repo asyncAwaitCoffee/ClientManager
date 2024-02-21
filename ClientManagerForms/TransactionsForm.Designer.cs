@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             transactionsDataGridView = new DataGridView();
             clientFromColumn = new DataGridViewTextBoxColumn();
             clientToColumn = new DataGridViewTextBoxColumn();
@@ -43,10 +45,14 @@
             // transactionsDataGridView
             // 
             transactionsDataGridView.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            transactionsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             transactionsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             transactionsDataGridView.Columns.AddRange(new DataGridViewColumn[] { clientFromColumn, clientToColumn, accountFromColumn, accountToColumn, amountColumn, creationDTColumn, transferDTColumn });
             transactionsDataGridView.Location = new Point(10, 48);
             transactionsDataGridView.Name = "transactionsDataGridView";
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            transactionsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             transactionsDataGridView.Size = new Size(779, 384);
             transactionsDataGridView.TabIndex = 0;
             // 
@@ -67,9 +73,9 @@
             // accountFromColumn
             // 
             accountFromColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            accountFromColumn.HeaderText = "From Account";
+            accountFromColumn.HeaderText = "From account";
             accountFromColumn.Name = "accountFromColumn";
-            accountFromColumn.Width = 168;
+            accountFromColumn.Width = 165;
             // 
             // accountToColumn
             // 
@@ -123,7 +129,7 @@
             Margin = new Padding(6);
             Name = "TransactionsForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "TransactionsForm";
+            Text = "Transactions";
             ((System.ComponentModel.ISupportInitialize)transactionsDataGridView).EndInit();
             ResumeLayout(false);
         }
@@ -131,6 +137,7 @@
         #endregion
 
         private DataGridView transactionsDataGridView;
+        private Button conductButton;
         private DataGridViewTextBoxColumn clientFromColumn;
         private DataGridViewTextBoxColumn clientToColumn;
         private DataGridViewTextBoxColumn accountFromColumn;
@@ -138,6 +145,5 @@
         private DataGridViewTextBoxColumn amountColumn;
         private DataGridViewTextBoxColumn creationDTColumn;
         private DataGridViewTextBoxColumn transferDTColumn;
-        private Button conductButton;
     }
 }

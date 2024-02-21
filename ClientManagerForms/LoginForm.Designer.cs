@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            loginTextBox = new TextBox();
+            userNameTextBox = new TextBox();
             passwordTextBox = new TextBox();
-            loginLabel = new Label();
+            userNameLabel = new Label();
             passwordLabel = new Label();
             loginButton = new Button();
             registerButton = new Button();
@@ -41,14 +41,14 @@
             ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
-            // loginTextBox
+            // userNameTextBox
             // 
-            loginTextBox.BackColor = Color.White;
-            loginTextBox.Location = new Point(77, 112);
-            loginTextBox.Margin = new Padding(8, 9, 8, 9);
-            loginTextBox.Name = "loginTextBox";
-            loginTextBox.Size = new Size(339, 50);
-            loginTextBox.TabIndex = 0;
+            userNameTextBox.BackColor = Color.White;
+            userNameTextBox.Location = new Point(77, 112);
+            userNameTextBox.Margin = new Padding(8, 9, 8, 9);
+            userNameTextBox.Name = "userNameTextBox";
+            userNameTextBox.Size = new Size(339, 50);
+            userNameTextBox.TabIndex = 0;
             // 
             // passwordTextBox
             // 
@@ -58,14 +58,14 @@
             passwordTextBox.Size = new Size(339, 50);
             passwordTextBox.TabIndex = 1;
             // 
-            // loginLabel
+            // userNameLabel
             // 
-            loginLabel.AutoSize = true;
-            loginLabel.Location = new Point(77, 58);
-            loginLabel.Name = "loginLabel";
-            loginLabel.Size = new Size(106, 45);
-            loginLabel.TabIndex = 2;
-            loginLabel.Text = "Login:";
+            userNameLabel.AutoSize = true;
+            userNameLabel.Location = new Point(77, 58);
+            userNameLabel.Name = "userNameLabel";
+            userNameLabel.Size = new Size(179, 45);
+            userNameLabel.TabIndex = 2;
+            userNameLabel.Text = "User name:";
             // 
             // passwordLabel
             // 
@@ -133,9 +133,9 @@
             Controls.Add(registerButton);
             Controls.Add(loginButton);
             Controls.Add(passwordLabel);
-            Controls.Add(loginLabel);
+            Controls.Add(userNameLabel);
             Controls.Add(passwordTextBox);
-            Controls.Add(loginTextBox);
+            Controls.Add(userNameTextBox);
             Font = new Font("Segoe UI", 24F, FontStyle.Regular, GraphicsUnit.Point, 204);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             HelpButton = true;
@@ -145,7 +145,7 @@
             MinimizeBox = false;
             Name = "LoginForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Registration";
+            Text = "Login";
             KeyDown += LoginForm_KeyDown;
             ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
@@ -154,9 +154,9 @@
 
         #endregion
 
-        private TextBox loginTextBox;
+        private TextBox userNameTextBox;
         private TextBox passwordTextBox;
-        private Label loginLabel;
+        private Label userNameLabel;
         private Label passwordLabel;
         private Button loginButton;
         private Button registerButton;

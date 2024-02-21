@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             usersDataGridView = new DataGridView();
             userNameColumn = new DataGridViewTextBoxColumn();
             permissionColumn = new DataGridViewComboBoxColumn();
@@ -42,10 +44,14 @@
             // usersDataGridView
             // 
             usersDataGridView.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
+            usersDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             usersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             usersDataGridView.Columns.AddRange(new DataGridViewColumn[] { userNameColumn, permissionColumn });
             usersDataGridView.Location = new Point(12, 36);
             usersDataGridView.Name = "usersDataGridView";
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            usersDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle2;
             usersDataGridView.Size = new Size(263, 324);
             usersDataGridView.TabIndex = 0;
             usersDataGridView.CellEndEdit += usersDataGridView_CellEndEdit;
@@ -100,10 +106,11 @@
             Controls.Add(saveButton);
             Controls.Add(usersDataGridView);
             Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(6);
             Name = "UsersForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "UsersForm";
+            Text = "Users";
             ((System.ComponentModel.ISupportInitialize)usersDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)userBindingSource).EndInit();
             ResumeLayout(false);

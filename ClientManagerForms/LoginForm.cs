@@ -13,19 +13,19 @@ namespace ClientManagerForms
 
         private async void loginButton_Click(object sender, EventArgs e)
         {
-            if (loginTextBox.Text.Length < 3)
+            if (userNameTextBox.Text.Length < 3)
             {
                 return;
             }
 
-            (int? userId, int? permissionsLevel) = await DataAccess.TryUserLogin(loginTextBox.Text, passwordTextBox.Text);
+            (int? userId, int? permissionsLevel) = await DataAccess.TryUserLogin(userNameTextBox.Text, passwordTextBox.Text);
 
             if (userId == null || permissionsLevel == null)
             {
                 return;
             }
 
-            loginTextBox.Text = "";
+            userNameTextBox.Text = "";
             passwordTextBox.Text = "";
 
             logoutButton.Visible = true;
@@ -46,10 +46,10 @@ namespace ClientManagerForms
             // TODO - more meaningful error messages
             loginInfoLabel.Text = "";
 
-            if (await DataAccess.ValidateUserRegistration(loginTextBox.Text, passwordTextBox.Text))
+            if (await DataAccess.ValidateUserRegistration(userNameTextBox.Text, passwordTextBox.Text))
             {
-                DataAccess.SaveUserToDB(loginTextBox.Text, passwordTextBox.Text);
-                loginTextBox.Text = "";
+                DataAccess.SaveUserToDB(userNameTextBox.Text, passwordTextBox.Text);
+                userNameTextBox.Text = "";
                 passwordTextBox.Text = "";
                 loginInfoLabel.ForeColor = Color.Green;
                 loginInfoLabel.Text = "Nice!";
