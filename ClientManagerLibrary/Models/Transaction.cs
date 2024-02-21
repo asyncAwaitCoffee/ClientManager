@@ -8,6 +8,7 @@ namespace ClientManagerLibrary.Models
 {
     public class Transaction
     {
+        public int Id { get; set; }
         public required Client ClientFrom { get; set; }
         public required Client ClientTo { get; set; }
         public required string AccountFrom { get; set; }

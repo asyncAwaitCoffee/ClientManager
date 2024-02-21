@@ -36,6 +36,7 @@
             amountColumn = new DataGridViewTextBoxColumn();
             creationDTColumn = new DataGridViewTextBoxColumn();
             transferDTColumn = new DataGridViewTextBoxColumn();
+            conductButton = new Button();
             ((System.ComponentModel.ISupportInitialize)transactionsDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -98,12 +99,24 @@
             transferDTColumn.Name = "transferDTColumn";
             transferDTColumn.Width = 111;
             // 
+            // conductButton
+            // 
+            conductButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            conductButton.Location = new Point(662, 12);
+            conductButton.Name = "conductButton";
+            conductButton.Size = new Size(127, 30);
+            conductButton.TabIndex = 1;
+            conductButton.Text = "Conduct";
+            conductButton.UseVisualStyleBackColor = true;
+            conductButton.Click += conductButton_Click;
+            // 
             // TransactionsForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(801, 444);
+            Controls.Add(conductButton);
             Controls.Add(transactionsDataGridView);
             Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -125,5 +138,6 @@
         private DataGridViewTextBoxColumn amountColumn;
         private DataGridViewTextBoxColumn creationDTColumn;
         private DataGridViewTextBoxColumn transferDTColumn;
+        private Button conductButton;
     }
 }
