@@ -35,7 +35,7 @@ namespace ClientManagerForms
         {
             // TODO - page number
             _clients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo, _itemsPerPage);
-            
+
             clientsDataGridView.DataSource = _clients;
 
             clientsDataGridView.Columns["Id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -125,6 +125,12 @@ namespace ClientManagerForms
         private void managersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UsersForm form = new UsersForm();
+            form.ShowDialog();
+        }
+
+        private void transactionsMenuItemNew_Click(object sender, EventArgs e)
+        {
+            TransactionNewForm form = new TransactionNewForm();
             form.ShowDialog();
         }
     }
