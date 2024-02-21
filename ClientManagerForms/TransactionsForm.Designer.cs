@@ -39,16 +39,21 @@
             creationDTColumn = new DataGridViewTextBoxColumn();
             transferDTColumn = new DataGridViewTextBoxColumn();
             conductButton = new Button();
+            fromAccountFilterTextBox = new TextBox();
+            toAccountFilterTextBox = new TextBox();
+            accountFilterButton = new Button();
             ((System.ComponentModel.ISupportInitialize)transactionsDataGridView).BeginInit();
             SuspendLayout();
             // 
             // transactionsDataGridView
             // 
             transactionsDataGridView.AllowUserToAddRows = false;
+            transactionsDataGridView.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(224, 224, 224);
             transactionsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             transactionsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             transactionsDataGridView.Columns.AddRange(new DataGridViewColumn[] { clientFromColumn, clientToColumn, accountFromColumn, accountToColumn, amountColumn, creationDTColumn, transferDTColumn });
+            transactionsDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             transactionsDataGridView.Location = new Point(10, 48);
             transactionsDataGridView.Name = "transactionsDataGridView";
             dataGridViewCellStyle2.BackColor = Color.Silver;
@@ -116,12 +121,44 @@
             conductButton.UseVisualStyleBackColor = true;
             conductButton.Click += conductButton_Click;
             // 
+            // fromAccountFilterTextBox
+            // 
+            fromAccountFilterTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            fromAccountFilterTextBox.Location = new Point(12, 12);
+            fromAccountFilterTextBox.Name = "fromAccountFilterTextBox";
+            fromAccountFilterTextBox.PlaceholderText = "From account...";
+            fromAccountFilterTextBox.Size = new Size(180, 29);
+            fromAccountFilterTextBox.TabIndex = 2;
+            // 
+            // toAccountFilterTextBox
+            // 
+            toAccountFilterTextBox.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            toAccountFilterTextBox.Location = new Point(198, 12);
+            toAccountFilterTextBox.Name = "toAccountFilterTextBox";
+            toAccountFilterTextBox.PlaceholderText = "To account...";
+            toAccountFilterTextBox.Size = new Size(180, 29);
+            toAccountFilterTextBox.TabIndex = 3;
+            // 
+            // accountFilterButton
+            // 
+            accountFilterButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            accountFilterButton.Location = new Point(384, 12);
+            accountFilterButton.Name = "accountFilterButton";
+            accountFilterButton.Size = new Size(59, 30);
+            accountFilterButton.TabIndex = 4;
+            accountFilterButton.Text = "Filter";
+            accountFilterButton.UseVisualStyleBackColor = true;
+            accountFilterButton.Click += accountFilterButton_Click;
+            // 
             // TransactionsForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(801, 444);
+            Controls.Add(accountFilterButton);
+            Controls.Add(toAccountFilterTextBox);
+            Controls.Add(fromAccountFilterTextBox);
             Controls.Add(conductButton);
             Controls.Add(transactionsDataGridView);
             Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
@@ -132,6 +169,7 @@
             Text = "Transactions";
             ((System.ComponentModel.ISupportInitialize)transactionsDataGridView).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -145,5 +183,8 @@
         private DataGridViewTextBoxColumn amountColumn;
         private DataGridViewTextBoxColumn creationDTColumn;
         private DataGridViewTextBoxColumn transferDTColumn;
+        private TextBox fromAccountFilterTextBox;
+        private TextBox toAccountFilterTextBox;
+        private Button accountFilterButton;
     }
 }

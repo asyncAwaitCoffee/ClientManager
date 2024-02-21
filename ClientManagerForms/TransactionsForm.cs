@@ -27,6 +27,39 @@ namespace ClientManagerForms
             // TODO - filter
             List<Transaction> transactions = await DataAccess.GetFilteredTransactions(null, null);
 
+            GenerateRows(transactions);
+        }
+
+        private async void conductButton_Click(object sender, EventArgs e)
+        {
+            var transactionRow = transactionsDataGridView.SelectedCells[0].OwningRow;
+
+            DateTime? success = await DataAccess.ConductTransaction((int)transactionRow.Tag);
+
+            transactionRow.Cells[6].Value = success;
+
+            MessageBox.Show($"Transaction {(success is null ? "failed" : "succeeded")}");
+        }
+
+        private async void accountFilterButton_Click(object sender, EventArgs e)
+        {
+            string? accountFrom = fromAccountFilterTextBox.Text.Length == 10 ? fromAccountFilterTextBox.Text : null;
+            string? accountTo = toAccountFilterTextBox.Text.Length == 10 ? toAccountFilterTextBox.Text : null;
+
+            if (accountFrom == null && accountTo == null)
+            {
+                return;
+            }
+
+            transactionsDataGridView.Rows.Clear();
+
+            List<Transaction> transactions = await DataAccess.GetFilteredTransactions(accountFrom, accountTo);
+
+            GenerateRows(transactions);
+        }
+
+        private void GenerateRows(List<Transaction> transactions)
+        {
             foreach (var tran in transactions)
             {
                 var row = new DataGridViewRow();
@@ -45,17 +78,6 @@ namespace ClientManagerForms
 
                 transactionsDataGridView.Rows.Add(row);
             }
-        }
-
-        private async void conductButton_Click(object sender, EventArgs e)
-        {
-            var transactionRow = transactionsDataGridView.SelectedCells[0].OwningRow;
-
-            DateTime? success = await DataAccess.ConductTransaction((int)transactionRow.Tag);
-
-            transactionRow.Cells[6].Value = success;
-
-            MessageBox.Show($"Transaction { (success is null ? "failed" : "succeeded") }");
         }
     }
 }
