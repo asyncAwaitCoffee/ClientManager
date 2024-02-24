@@ -42,6 +42,7 @@
             fromAccountFilterTextBox = new TextBox();
             toAccountFilterTextBox = new TextBox();
             accountFilterButton = new Button();
+            cancelButton = new Button();
             ((System.ComponentModel.ISupportInitialize)transactionsDataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -150,12 +151,24 @@
             accountFilterButton.UseVisualStyleBackColor = true;
             accountFilterButton.Click += accountFilterButton_Click;
             // 
+            // cancelButton
+            // 
+            cancelButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            cancelButton.Location = new Point(449, 12);
+            cancelButton.Name = "cancelButton";
+            cancelButton.Size = new Size(66, 30);
+            cancelButton.TabIndex = 5;
+            cancelButton.Text = "Cancel";
+            cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += cancelButton_Click;
+            // 
             // TransactionsForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(801, 444);
+            Controls.Add(cancelButton);
             Controls.Add(accountFilterButton);
             Controls.Add(toAccountFilterTextBox);
             Controls.Add(fromAccountFilterTextBox);
@@ -186,5 +199,6 @@
         private TextBox fromAccountFilterTextBox;
         private TextBox toAccountFilterTextBox;
         private Button accountFilterButton;
+        private Button cancelButton;
     }
 }
