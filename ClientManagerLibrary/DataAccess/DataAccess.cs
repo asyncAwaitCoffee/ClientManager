@@ -96,7 +96,7 @@ namespace ClientManagerLibrary.DataAccess
 
                 await sqlCommand.ExecuteNonQueryAsync();
 
-                if (sqlCommand.Parameters["@USER_ID"].SqlDbType == SqlDbType.Int && sqlCommand.Parameters["@PERMISSIONS_LEVEL"].SqlDbType == SqlDbType.Int)
+                if (sqlCommand.Parameters["@USER_ID"].Value != DBNull.Value && sqlCommand.Parameters["@PERMISSIONS_LEVEL"].Value != DBNull.Value)
                 {
                     int userId = (int)sqlCommand.Parameters["@USER_ID"].Value;
                     int permissionsLevel = (int)sqlCommand.Parameters["@PERMISSIONS_LEVEL"].Value;
