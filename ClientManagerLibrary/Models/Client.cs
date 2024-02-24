@@ -9,9 +9,9 @@ namespace ClientManagerLibrary.Models
 {
     public class Client
     {
-        public int Id { get; set; }
-        public string SurName { get; set; }
-        public string Name { get; set; }
+        public required int Id { get; set; }
+        public required string SurName { get; set; }
+        public required string Name { get; set; }
         [DisplayName("VIP")]
         public bool isVIP { get; set; }
         [Browsable(false)]
@@ -29,6 +29,8 @@ namespace ClientManagerLibrary.Models
             get {
                 return $"{SurName} {Name}";
             } }
+        [DisplayName("Client Manager")]
+        public string ClientManager { get; set; }
 
     }
 }

@@ -184,7 +184,8 @@ namespace ClientManagerLibrary.DataAccess
                                 Gender = result.GetBoolean("GENDER") ? 1 : 0,
                                 isVIP = result.GetBoolean("IS_VIP"),
                                 // TODO - AccountsId
-                                AccountsId = -1
+                                AccountsId = -1,
+                                ClientManager = result.GetString("USER_LOGIN"),
                             }
                         );
                 }
@@ -319,11 +320,11 @@ namespace ClientManagerLibrary.DataAccess
             return client;
         }
 
-        public static async void CreateTransaction(int clientIdFrom, int clientIdTo, string accountFrom, string accountTo, decimal amount, bool isImidiate)
+        public static async Task<DateTime?> CreateTransaction(int clientIdFrom, int clientIdTo, string accountFrom, string accountTo, decimal amount, bool isImidiate)
         {
             if (amount <= 0 || clientIdFrom == 0 || clientIdTo == 0 || accountFrom == accountTo)
             {
-                return;
+                return null;
             }
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -336,10 +337,18 @@ namespace ClientManagerLibrary.DataAccess
                     new SqlParameter("@ACCOUNT_FROM", accountFrom),
                     new SqlParameter("@ACCOUNT_TO", accountTo),
                     new SqlParameter("@AMOUNT", amount),
-                    new SqlParameter("@IS_IMIDIATE", isImidiate)
+                    new SqlParameter("@IS_IMIDIATE", isImidiate),
+                    new SqlParameter
+                    {
+                        ParameterName = "@TRANSFER_DATE_TIME",
+                        SqlDbType = SqlDbType.DateTime,
+                        Direction = ParameterDirection.Output
+                    }
                     );
 
                 await sqlCommand.ExecuteNonQueryAsync();
+                return (DateTime?)(sqlCommand.Parameters["@TRANSFER_DATE_TIME"].Value == DBNull.Value ? null : sqlCommand.Parameters["@TRANSFER_DATE_TIME"].Value);
+
             }
         }
 
