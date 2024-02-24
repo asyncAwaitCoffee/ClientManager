@@ -16,6 +16,7 @@ namespace ClientManager
             Console.WriteLine("Enter 2 - for log in");
             Console.WriteLine("Enter 0 - for exit");
 
+            /*
             while (true)
             {
                 Console.Write("Your choice: ");
@@ -81,7 +82,7 @@ namespace ClientManager
 
             // TODO - logic after user loged in
             Console.WriteLine("What is it going to be today?");
-            Console.ReadLine();
+            Console.ReadLine();*/
         }
     }
 }
