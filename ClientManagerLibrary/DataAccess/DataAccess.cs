@@ -124,7 +124,7 @@ namespace ClientManagerLibrary.DataAccess
         }
 
         /// <summary>
-        /// For console tests only
+        /// Gets all users
         /// </summary>
         /// <returns>All users</returns>
         public static async Task<List<User>> GetAllUsers()
@@ -145,8 +145,43 @@ namespace ClientManagerLibrary.DataAccess
                     users.Add(
                             new User()
                             {
+                                Id = result.GetInt32("ID"),
                                 UserName = result.GetString("USER_LOGIN"),
                                 PermissionLevel = (int)result.GetByte("PERMISSIONS_LEVEL")
+                            }
+                        );
+                }
+            }
+
+            return users;
+
+        }
+        /// <summary>
+        /// Gets all users and marks non-subordinates as null
+        /// </summary>
+        /// <returns>All users</returns>
+        public static async Task<List<User>> GetAllUsersForManager(string username)
+        {
+            List<User> users = new List<User>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.GET_ALL_USERS_FOR_MANAGER",
+                    new SqlParameter("@USER_LOGIN", username)
+                    );
+
+                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
+
+                while (await result.ReadAsync())
+                {
+                    users.Add(
+                            new User()
+                            {
+                                Id = result.GetInt32("ID"),
+                                UserName = result.GetString("USER_LOGIN"),
+                                ManagedId = result.GetInt32("MANAGER_USER_ID"),
                             }
                         );
                 }

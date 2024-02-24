@@ -14,5 +14,6 @@ namespace ClientManagerLibrary.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public int PermissionLevel { get; set; }
+        public int ManagedId { get; set; }
     }
 }
