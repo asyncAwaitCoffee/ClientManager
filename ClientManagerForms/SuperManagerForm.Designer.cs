@@ -28,22 +28,132 @@
         /// </summary>
         private void InitializeComponent()
         {
+            superManagerListBox = new ListBox();
+            managerListBox = new ListBox();
+            addButton = new Button();
+            button2 = new Button();
+            saveButton = new Button();
+            textBox1 = new TextBox();
+            findButton = new Button();
+            assignedLabel = new Label();
+            label1 = new Label();
             SuspendLayout();
+            // 
+            // superManagerListBox
+            // 
+            superManagerListBox.FormattingEnabled = true;
+            superManagerListBox.ItemHeight = 30;
+            superManagerListBox.Location = new Point(21, 115);
+            superManagerListBox.Name = "superManagerListBox";
+            superManagerListBox.Size = new Size(218, 304);
+            superManagerListBox.TabIndex = 0;
+            // 
+            // managerListBox
+            // 
+            managerListBox.FormattingEnabled = true;
+            managerListBox.ItemHeight = 30;
+            managerListBox.Location = new Point(316, 115);
+            managerListBox.Name = "managerListBox";
+            managerListBox.Size = new Size(218, 304);
+            managerListBox.TabIndex = 1;
+            // 
+            // addButton
+            // 
+            addButton.Location = new Point(245, 144);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(65, 45);
+            addButton.TabIndex = 2;
+            addButton.Text = ">>";
+            addButton.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(245, 195);
+            button2.Name = "button2";
+            button2.Size = new Size(65, 45);
+            button2.TabIndex = 3;
+            button2.Text = "<<";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // saveButton
+            // 
+            saveButton.Location = new Point(188, 456);
+            saveButton.Name = "saveButton";
+            saveButton.Size = new Size(190, 54);
+            saveButton.TabIndex = 4;
+            saveButton.Text = "Save";
+            saveButton.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(21, 23);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Username";
+            textBox1.Size = new Size(218, 35);
+            textBox1.TabIndex = 5;
+            // 
+            // findButton
+            // 
+            findButton.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            findButton.Location = new Point(245, 23);
+            findButton.Name = "findButton";
+            findButton.Size = new Size(65, 35);
+            findButton.TabIndex = 6;
+            findButton.Text = "Find";
+            findButton.UseVisualStyleBackColor = true;
+            // 
+            // assignedLabel
+            // 
+            assignedLabel.AutoSize = true;
+            assignedLabel.Location = new Point(21, 82);
+            assignedLabel.Name = "assignedLabel";
+            assignedLabel.Size = new Size(199, 30);
+            assignedLabel.TabIndex = 7;
+            assignedLabel.Text = "Assigned managers:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(316, 82);
+            label1.Name = "label1";
+            label1.Size = new Size(199, 30);
+            label1.TabIndex = 8;
+            label1.Text = "Available managers:";
             // 
             // SuperManagerForm
             // 
             AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(558, 531);
+            ClientSize = new Size(558, 535);
+            Controls.Add(label1);
+            Controls.Add(assignedLabel);
+            Controls.Add(findButton);
+            Controls.Add(textBox1);
+            Controls.Add(saveButton);
+            Controls.Add(button2);
+            Controls.Add(addButton);
+            Controls.Add(managerListBox);
+            Controls.Add(superManagerListBox);
             Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(5, 6, 5, 6);
             Name = "SuperManagerForm";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "SuperManagerForm";
+            Text = "Super Manager Form";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private ListBox superManagerListBox;
+        private ListBox managerListBox;
+        private Button addButton;
+        private Button button2;
+        private Button saveButton;
+        private TextBox textBox1;
+        private Button findButton;
+        private Label assignedLabel;
+        private Label label1;
     }
 }
