@@ -38,6 +38,7 @@
             menuStrip1 = new MenuStrip();
             clientMenuItem = new ToolStripMenuItem();
             createMenuSubItemClientNew = new ToolStripMenuItem();
+            managerAssignmentToolStripMenuItem = new ToolStripMenuItem();
             transactionsMenuItem = new ToolStripMenuItem();
             transactionsMenuItemNew = new ToolStripMenuItem();
             transactionsMenuItemLog = new ToolStripMenuItem();
@@ -106,7 +107,7 @@
             // 
             // clientMenuItem
             // 
-            clientMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createMenuSubItemClientNew });
+            clientMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createMenuSubItemClientNew, managerAssignmentToolStripMenuItem });
             clientMenuItem.Name = "clientMenuItem";
             clientMenuItem.Size = new Size(50, 20);
             clientMenuItem.Text = "Client";
@@ -114,9 +115,15 @@
             // createMenuSubItemClientNew
             // 
             createMenuSubItemClientNew.Name = "createMenuSubItemClientNew";
-            createMenuSubItemClientNew.Size = new Size(98, 22);
+            createMenuSubItemClientNew.Size = new Size(180, 22);
             createMenuSubItemClientNew.Text = "New";
             createMenuSubItemClientNew.Click += createMenuSubItemClient_Click;
+            // 
+            // managerAssignmentToolStripMenuItem
+            // 
+            managerAssignmentToolStripMenuItem.Name = "managerAssignmentToolStripMenuItem";
+            managerAssignmentToolStripMenuItem.Size = new Size(180, 22);
+            managerAssignmentToolStripMenuItem.Text = "Assignment";
             // 
             // transactionsMenuItem
             // 
@@ -128,15 +135,15 @@
             // transactionsMenuItemNew
             // 
             transactionsMenuItemNew.Name = "transactionsMenuItemNew";
-            transactionsMenuItemNew.Size = new Size(98, 22);
+            transactionsMenuItemNew.Size = new Size(180, 22);
             transactionsMenuItemNew.Text = "New";
             transactionsMenuItemNew.Click += transactionsMenuItemNew_Click;
             // 
             // transactionsMenuItemLog
             // 
             transactionsMenuItemLog.Name = "transactionsMenuItemLog";
-            transactionsMenuItemLog.Size = new Size(98, 22);
-            transactionsMenuItemLog.Text = "Log";
+            transactionsMenuItemLog.Size = new Size(180, 22);
+            transactionsMenuItemLog.Text = "Browse log";
             transactionsMenuItemLog.Click += transactionsMenuItemStatus_Click;
             // 
             // permissionsToolStripMenuItem
@@ -150,15 +157,16 @@
             // usersToolStripMenuItem
             // 
             usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            usersToolStripMenuItem.Size = new Size(126, 22);
+            usersToolStripMenuItem.Size = new Size(180, 22);
             usersToolStripMenuItem.Text = "Users";
             usersToolStripMenuItem.Click += managersToolStripMenuItem_Click;
             // 
             // managersToolStripMenuItem
             // 
             managersToolStripMenuItem.Name = "managersToolStripMenuItem";
-            managersToolStripMenuItem.Size = new Size(126, 22);
+            managersToolStripMenuItem.Size = new Size(180, 22);
             managersToolStripMenuItem.Text = "Managers";
+            managersToolStripMenuItem.Click += managersToolStripMenuItem_Click_1;
             // 
             // nextPageNoButton
             // 
@@ -227,5 +235,6 @@
         private ToolStripMenuItem permissionsToolStripMenuItem;
         private ToolStripMenuItem usersToolStripMenuItem;
         private ToolStripMenuItem managersToolStripMenuItem;
+        private ToolStripMenuItem managerAssignmentToolStripMenuItem;
     }
 }

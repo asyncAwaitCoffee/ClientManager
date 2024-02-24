@@ -24,7 +24,6 @@ namespace ClientManagerForms
 
         private async void LoadClients()
         {
-            // TODO - page number
             _clients = await DataAccess.GetUserClients(Manager.Instance().UserId, _currentPageNo, _itemsPerPage);
 
             clientsDataGridView.DataSource = _clients;
@@ -127,6 +126,12 @@ namespace ClientManagerForms
         private void transactionsMenuItemStatus_Click(object sender, EventArgs e)
         {
             TransactionsForm form = new TransactionsForm();
+            form.ShowDialog();
+        }
+
+        private void managersToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            SuperManagerForm form = new SuperManagerForm();
             form.ShowDialog();
         }
     }

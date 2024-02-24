@@ -115,9 +115,9 @@
             isImidiateCheckBox.AutoSize = true;
             isImidiateCheckBox.Location = new Point(117, 517);
             isImidiateCheckBox.Name = "isImidiateCheckBox";
-            isImidiateCheckBox.Size = new Size(216, 34);
+            isImidiateCheckBox.Size = new Size(239, 34);
             isImidiateCheckBox.TabIndex = 11;
-            isImidiateCheckBox.Text = "Imidiate transaction";
+            isImidiateCheckBox.Text = "immediate transaction";
             isImidiateCheckBox.UseVisualStyleBackColor = true;
             // 
             // createButton
