@@ -33,10 +33,11 @@
             addButton = new Button();
             button2 = new Button();
             saveButton = new Button();
-            textBox1 = new TextBox();
+            usernameTextBox = new TextBox();
             findButton = new Button();
             assignedLabel = new Label();
             label1 = new Label();
+            assignedForLabel = new Label();
             SuspendLayout();
             // 
             // superManagerListBox
@@ -84,13 +85,13 @@
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // usernameTextBox
             // 
-            textBox1.Location = new Point(21, 23);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Username";
-            textBox1.Size = new Size(218, 35);
-            textBox1.TabIndex = 5;
+            usernameTextBox.Location = new Point(21, 23);
+            usernameTextBox.Name = "usernameTextBox";
+            usernameTextBox.PlaceholderText = "Username";
+            usernameTextBox.Size = new Size(218, 35);
+            usernameTextBox.TabIndex = 5;
             // 
             // findButton
             // 
@@ -101,24 +102,34 @@
             findButton.TabIndex = 6;
             findButton.Text = "Find";
             findButton.UseVisualStyleBackColor = true;
+            findButton.Click += findButton_Click;
             // 
             // assignedLabel
             // 
             assignedLabel.AutoSize = true;
             assignedLabel.Location = new Point(21, 82);
             assignedLabel.Name = "assignedLabel";
-            assignedLabel.Size = new Size(199, 30);
+            assignedLabel.Size = new Size(134, 30);
             assignedLabel.TabIndex = 7;
-            assignedLabel.Text = "Assigned managers:";
+            assignedLabel.Text = "Assigned for:";
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Location = new Point(316, 82);
             label1.Name = "label1";
-            label1.Size = new Size(199, 30);
+            label1.Size = new Size(191, 30);
             label1.TabIndex = 8;
-            label1.Text = "Available managers:";
+            label1.Text = "Available to assign:";
+            // 
+            // assignedForLabel
+            // 
+            assignedForLabel.AutoSize = true;
+            assignedForLabel.Location = new Point(150, 82);
+            assignedForLabel.Name = "assignedForLabel";
+            assignedForLabel.Size = new Size(41, 30);
+            assignedForLabel.TabIndex = 9;
+            assignedForLabel.Text = "<>";
             // 
             // SuperManagerForm
             // 
@@ -126,10 +137,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(558, 535);
+            Controls.Add(assignedForLabel);
             Controls.Add(label1);
             Controls.Add(assignedLabel);
             Controls.Add(findButton);
-            Controls.Add(textBox1);
+            Controls.Add(usernameTextBox);
             Controls.Add(saveButton);
             Controls.Add(button2);
             Controls.Add(addButton);
@@ -151,9 +163,10 @@
         private Button addButton;
         private Button button2;
         private Button saveButton;
-        private TextBox textBox1;
+        private TextBox usernameTextBox;
         private Button findButton;
         private Label assignedLabel;
         private Label label1;
+        private Label assignedForLabel;
     }
 }
