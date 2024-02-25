@@ -10,15 +10,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ClientManagerForms
 {
     public partial class SuperManagerForm : Form
     {
-        BindingList<User> assignedManagers = new BindingList<User>();
-        BindingList<User> availableManagers = new BindingList<User>();
+        BindingList<User> assignedManagers;
+        BindingList<User> availableManagers;
 
-        string _username;
+        string _username = "";
 
         List<int> idsToAdd = [];
         List<int> idsToRemove = [];
@@ -36,13 +37,14 @@ namespace ClientManagerForms
             {
                 return;
             }
-            _username = usernameTextBox.Text;
 
-            if (!await DataAccess.IsUserExists(_username))
+            if (!await DataAccess.IsUserExists(usernameTextBox.Text))
             {
                 MessageBox.Show($"User [ {_username} ] does not exist.");
                 return;
             };
+
+            _username = usernameTextBox.Text;
 
             idsToAdd.Clear();
             idsToRemove.Clear();
@@ -91,6 +93,12 @@ namespace ClientManagerForms
 
         private async void saveButton_Click(object sender, EventArgs e)
         {
+            // TODO - length as global variable
+            if (_username.Length < 3)
+            {
+                return;
+            }
+
             await DataAccess.AssignManagers(_username, idsToAdd, idsToRemove);
         }
     }
