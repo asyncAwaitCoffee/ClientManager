@@ -487,5 +487,30 @@ namespace ClientManagerLibrary.DataAccess
                 return await sqlCommand.ExecuteNonQueryAsync();
             }
         }
+        public static async Task<Report> GetAccountsReport(string accounts)
+        {
+            Report report = new Report() { Header = "Accounts Report" };
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.GET_DATA_FOR_ACCOUNTS_REPORT",
+                    new SqlParameter("@ACCOUNT_CODES", accounts)
+                    );
+
+                SqlDataReader result = await sqlCommand.ExecuteReaderAsync();
+
+                // TODO - move all report logic and formatting to the Report class
+                while (await result.ReadAsync())
+                {
+                    report.Lines.Add(
+                            result.GetString("CODE") + " --- " + result.GetDecimal("BALANCE").ToString()
+                        );
+                }
+            }
+
+            return report;
+        }
     }
 }

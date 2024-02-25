@@ -13,7 +13,7 @@ namespace ClientManagerForms
             ApplicationConfiguration.Initialize();
 
             // TODO - LoginForm should be first to open
-            Application.Run(new SuperManagerForm());
+            Application.Run(new ClientsForm());
             //Application.Run(new LoginForm());
         }
     }

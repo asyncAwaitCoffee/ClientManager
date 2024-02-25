@@ -38,7 +38,7 @@
             menuStrip1 = new MenuStrip();
             clientMenuItem = new ToolStripMenuItem();
             createMenuSubItemClientNew = new ToolStripMenuItem();
-            managerAssignmentToolStripMenuItem = new ToolStripMenuItem();
+            buildReportToolStripMenuItem = new ToolStripMenuItem();
             transactionsMenuItem = new ToolStripMenuItem();
             transactionsMenuItemNew = new ToolStripMenuItem();
             transactionsMenuItemLog = new ToolStripMenuItem();
@@ -107,7 +107,7 @@
             // 
             // clientMenuItem
             // 
-            clientMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createMenuSubItemClientNew, managerAssignmentToolStripMenuItem });
+            clientMenuItem.DropDownItems.AddRange(new ToolStripItem[] { createMenuSubItemClientNew, buildReportToolStripMenuItem });
             clientMenuItem.Name = "clientMenuItem";
             clientMenuItem.Size = new Size(50, 20);
             clientMenuItem.Text = "Client";
@@ -119,11 +119,12 @@
             createMenuSubItemClientNew.Text = "New";
             createMenuSubItemClientNew.Click += createMenuSubItemClient_Click;
             // 
-            // managerAssignmentToolStripMenuItem
+            // buildReportToolStripMenuItem
             // 
-            managerAssignmentToolStripMenuItem.Name = "managerAssignmentToolStripMenuItem";
-            managerAssignmentToolStripMenuItem.Size = new Size(180, 22);
-            managerAssignmentToolStripMenuItem.Text = "Assignment";
+            buildReportToolStripMenuItem.Name = "buildReportToolStripMenuItem";
+            buildReportToolStripMenuItem.Size = new Size(180, 22);
+            buildReportToolStripMenuItem.Text = "Build Report";
+            buildReportToolStripMenuItem.Click += buildReportToolStripMenuItem_Click;
             // 
             // transactionsMenuItem
             // 
@@ -157,14 +158,14 @@
             // usersToolStripMenuItem
             // 
             usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            usersToolStripMenuItem.Size = new Size(180, 22);
+            usersToolStripMenuItem.Size = new Size(126, 22);
             usersToolStripMenuItem.Text = "Users";
             usersToolStripMenuItem.Click += managersToolStripMenuItem_Click;
             // 
             // managersToolStripMenuItem
             // 
             managersToolStripMenuItem.Name = "managersToolStripMenuItem";
-            managersToolStripMenuItem.Size = new Size(180, 22);
+            managersToolStripMenuItem.Size = new Size(126, 22);
             managersToolStripMenuItem.Text = "Managers";
             managersToolStripMenuItem.Click += managersToolStripMenuItem_Click_1;
             // 
@@ -235,6 +236,6 @@
         private ToolStripMenuItem permissionsToolStripMenuItem;
         private ToolStripMenuItem usersToolStripMenuItem;
         private ToolStripMenuItem managersToolStripMenuItem;
-        private ToolStripMenuItem managerAssignmentToolStripMenuItem;
+        private ToolStripMenuItem buildReportToolStripMenuItem;
     }
 }

@@ -398,5 +398,7 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Current Project
-StoreFiles/
+StoredFiles/
 TestConsole/
+Reports/
+Tests/
