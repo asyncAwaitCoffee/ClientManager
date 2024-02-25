@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            superManagerListBox = new ListBox();
-            managerListBox = new ListBox();
-            addButton = new Button();
-            button2 = new Button();
+            assignedManagersListBox = new ListBox();
+            availableManagerListBox = new ListBox();
+            removeManagerButton = new Button();
+            addManagerButton = new Button();
             saveButton = new Button();
             usernameTextBox = new TextBox();
             findButton = new Button();
@@ -40,41 +40,43 @@
             assignedForLabel = new Label();
             SuspendLayout();
             // 
-            // superManagerListBox
+            // assignedManagersListBox
             // 
-            superManagerListBox.FormattingEnabled = true;
-            superManagerListBox.ItemHeight = 30;
-            superManagerListBox.Location = new Point(21, 115);
-            superManagerListBox.Name = "superManagerListBox";
-            superManagerListBox.Size = new Size(218, 304);
-            superManagerListBox.TabIndex = 0;
+            assignedManagersListBox.FormattingEnabled = true;
+            assignedManagersListBox.ItemHeight = 30;
+            assignedManagersListBox.Location = new Point(21, 115);
+            assignedManagersListBox.Name = "assignedManagersListBox";
+            assignedManagersListBox.Size = new Size(218, 304);
+            assignedManagersListBox.TabIndex = 0;
             // 
-            // managerListBox
+            // availableManagerListBox
             // 
-            managerListBox.FormattingEnabled = true;
-            managerListBox.ItemHeight = 30;
-            managerListBox.Location = new Point(316, 115);
-            managerListBox.Name = "managerListBox";
-            managerListBox.Size = new Size(218, 304);
-            managerListBox.TabIndex = 1;
+            availableManagerListBox.FormattingEnabled = true;
+            availableManagerListBox.ItemHeight = 30;
+            availableManagerListBox.Location = new Point(316, 115);
+            availableManagerListBox.Name = "availableManagerListBox";
+            availableManagerListBox.Size = new Size(218, 304);
+            availableManagerListBox.TabIndex = 1;
             // 
-            // addButton
+            // removeManagerButton
             // 
-            addButton.Location = new Point(245, 144);
-            addButton.Name = "addButton";
-            addButton.Size = new Size(65, 45);
-            addButton.TabIndex = 2;
-            addButton.Text = ">>";
-            addButton.UseVisualStyleBackColor = true;
+            removeManagerButton.Location = new Point(245, 144);
+            removeManagerButton.Name = "removeManagerButton";
+            removeManagerButton.Size = new Size(65, 45);
+            removeManagerButton.TabIndex = 2;
+            removeManagerButton.Text = ">>";
+            removeManagerButton.UseVisualStyleBackColor = true;
+            removeManagerButton.Click += removeManagerButton_Click;
             // 
-            // button2
+            // addManagerButton
             // 
-            button2.Location = new Point(245, 195);
-            button2.Name = "button2";
-            button2.Size = new Size(65, 45);
-            button2.TabIndex = 3;
-            button2.Text = "<<";
-            button2.UseVisualStyleBackColor = true;
+            addManagerButton.Location = new Point(245, 195);
+            addManagerButton.Name = "addManagerButton";
+            addManagerButton.Size = new Size(65, 45);
+            addManagerButton.TabIndex = 3;
+            addManagerButton.Text = "<<";
+            addManagerButton.UseVisualStyleBackColor = true;
+            addManagerButton.Click += addManagerButton_Click;
             // 
             // saveButton
             // 
@@ -84,6 +86,7 @@
             saveButton.TabIndex = 4;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // usernameTextBox
             // 
@@ -143,10 +146,10 @@
             Controls.Add(findButton);
             Controls.Add(usernameTextBox);
             Controls.Add(saveButton);
-            Controls.Add(button2);
-            Controls.Add(addButton);
-            Controls.Add(managerListBox);
-            Controls.Add(superManagerListBox);
+            Controls.Add(addManagerButton);
+            Controls.Add(removeManagerButton);
+            Controls.Add(availableManagerListBox);
+            Controls.Add(assignedManagersListBox);
             Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(5, 6, 5, 6);
             Name = "SuperManagerForm";
@@ -158,10 +161,10 @@
 
         #endregion
 
-        private ListBox superManagerListBox;
-        private ListBox managerListBox;
-        private Button addButton;
-        private Button button2;
+        private ListBox assignedManagersListBox;
+        private ListBox availableManagerListBox;
+        private Button removeManagerButton;
+        private Button addManagerButton;
         private Button saveButton;
         private TextBox usernameTextBox;
         private Button findButton;

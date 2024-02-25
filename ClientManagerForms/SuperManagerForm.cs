@@ -15,6 +15,13 @@ namespace ClientManagerForms
 {
     public partial class SuperManagerForm : Form
     {
+        BindingList<User> assignedManagers = new BindingList<User>();
+        BindingList<User> availableManagers = new BindingList<User>();
+
+        string _username;
+
+        List<int> idsToAdd = [];
+        List<int> idsToRemove = [];
         public SuperManagerForm()
         {
             InitializeComponent();
@@ -29,21 +36,62 @@ namespace ClientManagerForms
             {
                 return;
             }
-            string username = usernameTextBox.Text;
-            
-            List<User> users = await DataAccess.GetAllUsersForManager(username);
+            _username = usernameTextBox.Text;
 
-            assignedForLabel.Text = username;
+            if (!await DataAccess.IsUserExists(_username))
+            {
+                MessageBox.Show($"User [ {_username} ] does not exist.");
+                return;
+            };
 
-            var groupedUserd = users.GroupBy(u => u.ManagedId > 0);
+            idsToAdd.Clear();
+            idsToRemove.Clear();
 
+            BindingList<User> users = await DataAccess.GetAllUsersForManager(_username);
 
+            assignedForLabel.Text = _username;
 
-            superManagerListBox.DataSource = users.Where(u => u.ManagedId > 0).ToList();
-            superManagerListBox.DisplayMember = "UserName";
+            assignedManagers = new BindingList<User>(users.Where(u => u.ManagedId != 0).ToList());
+            availableManagers = new BindingList<User>(users.Where(u => u.ManagedId == 0).ToList());
 
-            managerListBox.DataSource = users.Where(u => u.ManagedId == 0).ToList();
-            managerListBox.DisplayMember = "UserName";
+            assignedManagersListBox.DataSource = assignedManagers;
+            assignedManagersListBox.DisplayMember = "UserName";
+
+            availableManagerListBox.DataSource = availableManagers;
+            availableManagerListBox.DisplayMember = "UserName";
+        }
+
+        private void addManagerButton_Click(object sender, EventArgs e)
+        {
+            User availableManager = (User)availableManagerListBox.SelectedItem;
+
+            if (availableManagers.Remove(availableManager))
+            {
+                assignedManagers.Add(availableManager);
+
+                idsToRemove.Remove(availableManager.Id);
+                idsToAdd.Add(availableManager.Id);                
+            }
+
+        }
+
+        private void removeManagerButton_Click(object sender, EventArgs e)
+        {
+            User assignedManager = (User)assignedManagersListBox.SelectedItem;
+
+            if (assignedManagers.Remove(assignedManager))
+            {
+                availableManagers.Add(assignedManager);
+
+                idsToAdd.Remove(assignedManager.Id);
+                idsToRemove.Add(assignedManager.Id);
+            }
+
+        }
+
+        private async void saveButton_Click(object sender, EventArgs e)
+        {
+            await DataAccess.AssignManagers(_username, idsToAdd, idsToRemove);
         }
     }
 }
