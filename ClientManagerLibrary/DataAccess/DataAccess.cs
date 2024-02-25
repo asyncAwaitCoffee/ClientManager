@@ -160,9 +160,9 @@ namespace ClientManagerLibrary.DataAccess
         /// Gets all users and marks non-subordinates as null
         /// </summary>
         /// <returns>All users</returns>
-        public static async Task<List<User>> GetAllUsersForManager(string username)
+        public static async Task<BindingList<User>> GetAllUsersForManager(string username)
         {
-            List<User> users = new List<User>();
+            BindingList<User> users = new BindingList<User>();
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -457,8 +457,6 @@ namespace ClientManagerLibrary.DataAccess
             return result;
         }
 
-
-
         public static async Task<int> CreateAccount(int clientId, string accountCode)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -468,6 +466,22 @@ namespace ClientManagerLibrary.DataAccess
                     "CLIENT_MANAGER.CREATE_ACCOUNT",
                     new SqlParameter("@CLIENT_ID", clientId),
                     new SqlParameter("@ACCOUNT_CODE", accountCode)
+                    );
+
+                return await sqlCommand.ExecuteNonQueryAsync();
+            }
+        }
+
+        public static async Task<int> AssignManagers(string username, List<int> managersToAssign, List<int> managersToUnassign)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand sqlCommand = await CreateSqlCommand(
+                    connection,
+                    "CLIENT_MANAGER.ASSIGN_MANAGERS",
+                    new SqlParameter("@USER_LOGIN", username),
+                    new SqlParameter("@MANAGERS_TO_ASSIGN", string.Join(',', managersToAssign)),
+                    new SqlParameter("@MANAGERS_TO_UNASSIGN", string.Join(',', managersToUnassign))
                     );
 
                 return await sqlCommand.ExecuteNonQueryAsync();
