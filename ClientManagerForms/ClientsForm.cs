@@ -134,5 +134,11 @@ namespace ClientManagerForms
             SuperManagerForm form = new SuperManagerForm();
             form.ShowDialog();
         }
+
+        private void buildReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReportsForm form = new ReportsForm();
+            form.ShowDialog();
+        }
     }
 }
