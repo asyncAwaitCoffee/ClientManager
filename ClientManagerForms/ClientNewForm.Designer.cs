@@ -42,43 +42,47 @@
             // 
             // surnameTextBox
             // 
-            surnameTextBox.Location = new Point(48, 96);
+            surnameTextBox.Font = new Font("Segoe UI", 15.75F);
+            surnameTextBox.Location = new Point(31, 87);
             surnameTextBox.Name = "surnameTextBox";
-            surnameTextBox.Size = new Size(298, 39);
+            surnameTextBox.Size = new Size(298, 35);
             surnameTextBox.TabIndex = 0;
             // 
             // nameTextBox
             // 
-            nameTextBox.Location = new Point(48, 175);
+            nameTextBox.Font = new Font("Segoe UI", 15.75F);
+            nameTextBox.Location = new Point(31, 166);
             nameTextBox.Name = "nameTextBox";
-            nameTextBox.Size = new Size(298, 39);
+            nameTextBox.Size = new Size(298, 35);
             nameTextBox.TabIndex = 1;
             // 
             // surnameLabel
             // 
             surnameLabel.AutoSize = true;
-            surnameLabel.Location = new Point(48, 61);
+            surnameLabel.Font = new Font("Segoe UI", 15.75F);
+            surnameLabel.Location = new Point(31, 52);
             surnameLabel.Name = "surnameLabel";
-            surnameLabel.Size = new Size(109, 32);
+            surnameLabel.Size = new Size(95, 30);
             surnameLabel.TabIndex = 3;
             surnameLabel.Text = "Surname";
             // 
             // nameLabel
             // 
             nameLabel.AutoSize = true;
-            nameLabel.Location = new Point(48, 140);
+            nameLabel.Font = new Font("Segoe UI", 15.75F);
+            nameLabel.Location = new Point(31, 131);
             nameLabel.Name = "nameLabel";
-            nameLabel.Size = new Size(78, 32);
+            nameLabel.Size = new Size(69, 30);
             nameLabel.TabIndex = 4;
             nameLabel.Text = "Name";
             // 
             // newClientInfoLabel
             // 
             newClientInfoLabel.AutoSize = true;
-            newClientInfoLabel.Font = new Font("Segoe UI", 21.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            newClientInfoLabel.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
             newClientInfoLabel.Location = new Point(12, 9);
             newClientInfoLabel.Name = "newClientInfoLabel";
-            newClientInfoLabel.Size = new Size(253, 40);
+            newClientInfoLabel.Size = new Size(213, 32);
             newClientInfoLabel.TabIndex = 6;
             newClientInfoLabel.Text = "Client information:";
             // 
@@ -112,14 +116,15 @@
             // 
             genderPanel.Controls.Add(maleRadioButton);
             genderPanel.Controls.Add(femaleRadioButton);
-            genderPanel.Location = new Point(92, 229);
+            genderPanel.Location = new Point(84, 220);
             genderPanel.Name = "genderPanel";
             genderPanel.Size = new Size(180, 38);
             genderPanel.TabIndex = 9;
             // 
             // createClientButton
             // 
-            createClientButton.Location = new Point(117, 292);
+            createClientButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            createClientButton.Location = new Point(108, 282);
             createClientButton.Name = "createClientButton";
             createClientButton.Size = new Size(128, 41);
             createClientButton.TabIndex = 10;
@@ -132,7 +137,7 @@
             AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(394, 358);
+            ClientSize = new Size(360, 341);
             Controls.Add(createClientButton);
             Controls.Add(genderPanel);
             Controls.Add(newClientInfoLabel);

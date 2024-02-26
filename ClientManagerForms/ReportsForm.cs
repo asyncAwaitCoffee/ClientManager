@@ -14,6 +14,7 @@ namespace ClientManagerForms
 {
     public partial class ReportsForm : Form
     {
+        private string _baseCode = "";
         public ReportsForm()
         {
             InitializeComponent();
@@ -37,6 +38,8 @@ namespace ClientManagerForms
                 {
                     accountsCheckedListBox.Items.Add(account.Code);
                 }
+
+                _baseCode = clientByAccountTextBox.Text;
             }
             else
             {
@@ -64,7 +67,7 @@ namespace ClientManagerForms
             Report report = await DataAccess.GetAccountsReport(accounts);
 
 #if DEBUG
-            string path = @$"D:\Programming\projects\ClientManager\Reports\report_{clientByAccountTextBox.Text}.txt";
+            string path = @$"D:\Programming\projects\ClientManager\Reports\report_{_baseCode}.txt";
 #else
             string path = @"Reports\test.txt";
 #endif
