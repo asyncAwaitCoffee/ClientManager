@@ -32,7 +32,6 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             clientsDataGridView = new DataGridView();
             clientsFormNotifyIcon = new NotifyIcon(components);
             menuStrip1 = new MenuStrip();
@@ -59,30 +58,22 @@
             clientsDataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             clientsDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             clientsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            clientsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             clientsDataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
-            clientsDataGridView.Location = new Point(11, 41);
+            clientsDataGridView.Location = new Point(9, 33);
             clientsDataGridView.Margin = new Padding(2);
             clientsDataGridView.Name = "clientsDataGridView";
             clientsDataGridView.ReadOnly = true;
             clientsDataGridView.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Sunken;
+            dataGridViewCellStyle2.BackColor = Color.Silver;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            clientsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewCellStyle3.BackColor = Color.Silver;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            clientsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.BackColor = Color.Silver;
-            clientsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            clientsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle3;
             clientsDataGridView.RowTemplate.Height = 50;
-            clientsDataGridView.Size = new Size(612, 454);
+            clientsDataGridView.Size = new Size(872, 478);
             clientsDataGridView.TabIndex = 1;
             clientsDataGridView.CellDoubleClick += clientsDataGridView_CellDoubleClick;
             // 
@@ -101,7 +92,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { clientMenuItem, transactionsMenuItem, permissionsToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(635, 24);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(892, 24);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -115,14 +107,14 @@
             // createMenuSubItemClientNew
             // 
             createMenuSubItemClientNew.Name = "createMenuSubItemClientNew";
-            createMenuSubItemClientNew.Size = new Size(180, 22);
+            createMenuSubItemClientNew.Size = new Size(139, 22);
             createMenuSubItemClientNew.Text = "New";
             createMenuSubItemClientNew.Click += createMenuSubItemClient_Click;
             // 
             // buildReportToolStripMenuItem
             // 
             buildReportToolStripMenuItem.Name = "buildReportToolStripMenuItem";
-            buildReportToolStripMenuItem.Size = new Size(180, 22);
+            buildReportToolStripMenuItem.Size = new Size(139, 22);
             buildReportToolStripMenuItem.Text = "Build Report";
             buildReportToolStripMenuItem.Click += buildReportToolStripMenuItem_Click;
             // 
@@ -136,14 +128,14 @@
             // transactionsMenuItemNew
             // 
             transactionsMenuItemNew.Name = "transactionsMenuItemNew";
-            transactionsMenuItemNew.Size = new Size(180, 22);
+            transactionsMenuItemNew.Size = new Size(132, 22);
             transactionsMenuItemNew.Text = "New";
             transactionsMenuItemNew.Click += transactionsMenuItemNew_Click;
             // 
             // transactionsMenuItemLog
             // 
             transactionsMenuItemLog.Name = "transactionsMenuItemLog";
-            transactionsMenuItemLog.Size = new Size(180, 22);
+            transactionsMenuItemLog.Size = new Size(132, 22);
             transactionsMenuItemLog.Text = "Browse log";
             transactionsMenuItemLog.Click += transactionsMenuItemStatus_Click;
             // 
@@ -172,9 +164,10 @@
             // nextPageNoButton
             // 
             nextPageNoButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            nextPageNoButton.Location = new Point(308, 525);
+            nextPageNoButton.Location = new Point(458, 526);
+            nextPageNoButton.Margin = new Padding(2);
             nextPageNoButton.Name = "nextPageNoButton";
-            nextPageNoButton.Size = new Size(101, 43);
+            nextPageNoButton.Size = new Size(81, 35);
             nextPageNoButton.TabIndex = 3;
             nextPageNoButton.Text = "Next";
             nextPageNoButton.UseVisualStyleBackColor = true;
@@ -184,9 +177,10 @@
             // 
             previousPageNoButton.Enabled = false;
             previousPageNoButton.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            previousPageNoButton.Location = new Point(186, 525);
+            previousPageNoButton.Location = new Point(354, 526);
+            previousPageNoButton.Margin = new Padding(2);
             previousPageNoButton.Name = "previousPageNoButton";
-            previousPageNoButton.Size = new Size(101, 43);
+            previousPageNoButton.Size = new Size(81, 35);
             previousPageNoButton.TabIndex = 4;
             previousPageNoButton.Text = "Prev";
             previousPageNoButton.UseVisualStyleBackColor = true;
@@ -194,18 +188,18 @@
             // 
             // ClientsForm
             // 
-            AutoScaleDimensions = new SizeF(15F, 37F);
+            AutoScaleDimensions = new SizeF(12F, 30F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(635, 580);
+            ClientSize = new Size(892, 575);
             Controls.Add(previousPageNoButton);
             Controls.Add(nextPageNoButton);
             Controls.Add(clientsDataGridView);
             Controls.Add(menuStrip1);
-            Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(7);
+            Margin = new Padding(6);
             Name = "ClientsForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Clients";

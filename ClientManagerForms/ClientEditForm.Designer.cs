@@ -43,17 +43,17 @@
             // 
             // clientNameTextBox
             // 
-            clientNameTextBox.Location = new Point(19, 111);
+            clientNameTextBox.Location = new Point(19, 99);
             clientNameTextBox.Name = "clientNameTextBox";
             clientNameTextBox.PlaceholderText = "Name";
-            clientNameTextBox.Size = new Size(408, 43);
+            clientNameTextBox.Size = new Size(408, 35);
             clientNameTextBox.TabIndex = 0;
             // 
             // clientAccountsIdscomboBox
             // 
             clientAccountsIdscomboBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
             clientAccountsIdscomboBox.FormattingEnabled = true;
-            clientAccountsIdscomboBox.Location = new Point(30, 63);
+            clientAccountsIdscomboBox.Location = new Point(19, 45);
             clientAccountsIdscomboBox.Name = "clientAccountsIdscomboBox";
             clientAccountsIdscomboBox.Size = new Size(220, 40);
             clientAccountsIdscomboBox.TabIndex = 1;
@@ -62,9 +62,10 @@
             // saveClientButton
             // 
             saveClientButton.Enabled = false;
-            saveClientButton.Location = new Point(48, 386);
+            saveClientButton.Font = new Font("Segoe UI", 15.75F);
+            saveClientButton.Location = new Point(102, 345);
             saveClientButton.Name = "saveClientButton";
-            saveClientButton.Size = new Size(147, 69);
+            saveClientButton.Size = new Size(114, 41);
             saveClientButton.TabIndex = 2;
             saveClientButton.Text = "Save";
             saveClientButton.UseVisualStyleBackColor = true;
@@ -72,9 +73,10 @@
             // 
             // cancelButton
             // 
-            cancelButton.Location = new Point(276, 386);
+            cancelButton.Font = new Font("Segoe UI", 15.75F);
+            cancelButton.Location = new Point(255, 345);
             cancelButton.Name = "cancelButton";
-            cancelButton.Size = new Size(147, 69);
+            cancelButton.Size = new Size(114, 41);
             cancelButton.TabIndex = 3;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
@@ -85,13 +87,13 @@
             clientSurnameTextBox.Location = new Point(19, 44);
             clientSurnameTextBox.Name = "clientSurnameTextBox";
             clientSurnameTextBox.PlaceholderText = "Surname";
-            clientSurnameTextBox.Size = new Size(408, 43);
+            clientSurnameTextBox.Size = new Size(408, 35);
             clientSurnameTextBox.TabIndex = 4;
             // 
             // balanceTextBox
             // 
             balanceTextBox.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            balanceTextBox.Location = new Point(269, 63);
+            balanceTextBox.Location = new Point(280, 46);
             balanceTextBox.Name = "balanceTextBox";
             balanceTextBox.ReadOnly = true;
             balanceTextBox.Size = new Size(147, 39);
@@ -101,7 +103,7 @@
             // 
             addNewAccountLinkLabel.AutoSize = true;
             addNewAccountLinkLabel.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            addNewAccountLinkLabel.Location = new Point(30, 106);
+            addNewAccountLinkLabel.Location = new Point(144, 88);
             addNewAccountLinkLabel.Name = "addNewAccountLinkLabel";
             addNewAccountLinkLabel.Size = new Size(95, 30);
             addNewAccountLinkLabel.TabIndex = 8;
@@ -114,10 +116,10 @@
             accountsGroupBox.Controls.Add(clientAccountsIdscomboBox);
             accountsGroupBox.Controls.Add(addNewAccountLinkLabel);
             accountsGroupBox.Controls.Add(balanceTextBox);
-            accountsGroupBox.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            accountsGroupBox.Location = new Point(12, 208);
+            accountsGroupBox.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            accountsGroupBox.Location = new Point(12, 194);
             accountsGroupBox.Name = "accountsGroupBox";
-            accountsGroupBox.Size = new Size(447, 146);
+            accountsGroupBox.Size = new Size(447, 132);
             accountsGroupBox.TabIndex = 9;
             accountsGroupBox.TabStop = false;
             accountsGroupBox.Text = "Accounts:";
@@ -126,10 +128,10 @@
             // 
             groupBox1.Controls.Add(clientSurnameTextBox);
             groupBox1.Controls.Add(clientNameTextBox);
-            groupBox1.Font = new Font("Segoe UI", 20.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            groupBox1.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 204);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(447, 190);
+            groupBox1.Size = new Size(447, 166);
             groupBox1.TabIndex = 10;
             groupBox1.TabStop = false;
             groupBox1.Text = "Client info:";
@@ -139,7 +141,7 @@
             AutoScaleDimensions = new SizeF(18F, 45F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(471, 488);
+            ClientSize = new Size(471, 411);
             Controls.Add(groupBox1);
             Controls.Add(accountsGroupBox);
             Controls.Add(cancelButton);
